@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
-import axios from './axiosSetting.js'
+import axios from './axiosSetting.js';
+import update from 'react-addons-update';
+
+import ShareInput from "./components/ShareInput";
 
 class App extends Component {
   constructor() {
@@ -8,7 +11,11 @@ class App extends Component {
 
     this.state = {
       memos: [],
+      inputValue: '',
     };
+
+    this.changeInputValue = this.changeInputValue.bind(this);
+    this.addPost = this.addPost.bind(this);
   }
 
   componentDidMount() {
@@ -26,6 +33,28 @@ class App extends Component {
       });
   }
 
+  changeInputValue(e) {
+    this.setState({
+      inputValue: e.target.value
+    })
+  }
+
+  addPost() {
+    axios.post('/api/v1/memos', {"memo": {"content": this.state.inputValue}})
+      .then((response) => {
+        console.log(response);
+
+        const newData = update(this.state.memos, {$unshift: [response.data]})
+        this.setState({
+          memos: newData,
+          inputValue: ''
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <div className="App">
@@ -33,7 +62,11 @@ class App extends Component {
           <h1>Memotter</h1>
         </header>
 
+        <div className="ShareInput">
+          <ShareInput value={this.state.inputValue} changeInputValue={this.changeInputValue} addPost={this.addPost}/>
+        </div>
         <ul>
+
           {this.state.memos.map(memo => {
             return (
               <li key={memo.id}>
