@@ -13,7 +13,7 @@ class App extends Component {
 
   componentDidMount() {
     axios
-      .get('/memos')
+      .get('/api/v1/memos')
       .then((response) => {
         console.log(response);
 
