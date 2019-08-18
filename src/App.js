@@ -64,20 +64,10 @@ class App extends Component {
         <header>
           <h1>Memotter</h1>
         </header>
-        <SignInSide/>
+        <SignInSide memos={this.state.memos}/>
         <div className="ShareInput">
           <ShareInput value={this.state.inputValue} changeInputValue={this.changeInputValue} addPost={this.addPost}/>
         </div>
-        <ul>
-
-          {this.state.memos.map(memo => {
-            return (
-              <li key={memo.id}>
-                {memo.content}
-              </li>
-            );
-          })}
-        </ul>
       </div>
     );
   }
