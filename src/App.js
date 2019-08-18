@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './App.css';
 import axios from './axiosSetting.js';
 import update from 'react-addons-update';
+import SignInSide from './components/SignIn';
+import Grid from '@material-ui/core/Grid';
 
 import ShareInput from "./components/ShareInput";
 
@@ -12,6 +14,7 @@ class App extends Component {
     this.state = {
       memos: [],
       inputValue: '',
+      current_user: '1234'
     };
 
     this.changeInputValue = this.changeInputValue.bind(this);
@@ -61,7 +64,7 @@ class App extends Component {
         <header>
           <h1>Memotter</h1>
         </header>
-
+        <SignInSide/>
         <div className="ShareInput">
           <ShareInput value={this.state.inputValue} changeInputValue={this.changeInputValue} addPost={this.addPost}/>
         </div>
