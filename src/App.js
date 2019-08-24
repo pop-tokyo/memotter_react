@@ -20,20 +20,20 @@ class App extends Component {
     this.addPost = this.addPost.bind(this);
   }
 
-  // componentWillMount() {
-  //   axios
-  //     .get('/api/v1/memos')
-  //     .then((response) => {
-  //       console.log(response);
-  //
-  //       this.setState({
-  //         memos: response.data,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+  componentWillMount() {
+    axios
+      .get('/api/v1/memos')
+      .then((response) => {
+        console.log(response);
+
+        this.setState({
+          memos: response.data,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   changeInputValue(e) {
     this.setState({

@@ -39,41 +39,41 @@ function Copyright() {
   );
 }
 
-function getMemos(){
-  axios
-    .get('/api/v1/memos')
-    .then((response) => {
-      console.log(response);
-      return response.data
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-}
+// function getMemos(){
+//   axios
+//     .get('/api/v1/memos')
+//     .then((response) => {
+//       console.log(response);
+//       return response.data
+//     })
+//     .catch((error) => {
+//       console.log(error);
+//     });
+// }
 
-function generate() {
-  var memos = getMemos()
-  return memos.map(value =>
-    React.cloneElement(<ListItem>
-      <ListItemAvatar>
-        <Avatar>
-          <FolderIcon/>
-        </Avatar>
-      </ListItemAvatar>
-      <ListItemText
-        primary={value.content}
-        secondary={null}
-      />
-      <ListItemSecondaryAction>
-        <IconButton edge="end" aria-label="delete">
-          <DeleteIcon/>
-        </IconButton>
-      </ListItemSecondaryAction>
-    </ListItem>, {
-      key: value,
-    },)
-  );
-}
+// function generate() {
+//   var memos = getMemos()
+//   return memos.map(value =>
+//     React.cloneElement(<ListItem>
+//       <ListItemAvatar>
+//         <Avatar>
+//           <FolderIcon/>
+//         </Avatar>
+//       </ListItemAvatar>
+//       <ListItemText
+//         primary={value.content}
+//         secondary={null}
+//       />
+//       <ListItemSecondaryAction>
+//         <IconButton edge="end" aria-label="delete">
+//           <DeleteIcon/>
+//         </IconButton>
+//       </ListItemSecondaryAction>
+//     </ListItem>, {
+//       key: value,
+//     },)
+//   );
+// }
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -107,6 +107,14 @@ const useStyles = makeStyles(theme => ({
 export default function SignInSide(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
+  const list = props.memos.map((memo, index) => {
+    return (
+      <li key={index}>
+        {memo.content}
+      </li>
+    )
+  });
+
   return (
     <Grid container component="main" className="left-container">
       <CssBaseline/>
@@ -116,7 +124,7 @@ export default function SignInSide(props) {
         </Typography>
         <div className={classes.demo}>
           <List dense={dense}>
-            {generate()}
+            {list}
           </List>
         </div>
       </Grid>
