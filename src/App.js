@@ -66,7 +66,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
+        <header className="App-header">
           <h1>
             <RouterLink to='/'>Memotter</RouterLink>
           </h1>
