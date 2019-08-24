@@ -76,7 +76,7 @@ export default function SignInForm(props) {
   const [dense, setDense] = React.useState(false);
 
   return (
-    <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+    <Grid item xs={props.gridXs} md={props.gridMd} component={Paper} elevation={6} square>
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon/>

@@ -80,7 +80,7 @@ export default function MemoList(props) {
   });
 
   return (
-    <Grid item xs={12} md={6}>
+    <Grid item xs={props.gridXs} md={props.gridMd}>
       <Typography variant="h6" className="list">
         最新のみんなのmemos
       </Typography>

@@ -27,17 +27,21 @@ import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import MemoList from "./MemoList";
-import SignInForm from "./SignInForm";
+import ShareInput from "./ShareInput";
 
-export default function SignInDisplay(props) {
+export default function MainDisplay(props) {
   return (
     <Grid container component="main" className="left-container">
       <CssBaseline/>
 
+      <ShareInput value={props.inputValue}
+                  changeInputValue={props.changeInputValue}
+                  addPost={props.addPost}
+                  gridXs={12}
+                  gridMd={12} />
       <MemoList memos={props.memos}
-                gridXs={6}
-                gridMd={6} />
-      <SignInForm gridXs={6} gridMd={6} />
+                gridXs={12}
+                gridMd={12} />
     </Grid>
   );
 }
