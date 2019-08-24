@@ -31,10 +31,9 @@ import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import SignInSide from './components/SignIn';
 import ShareInput from "./components/ShareInput";
 import MemoList from "./components/MemoList";
-import SignInForm from "./components/SignInForm";
+import SignInDisplay from "./components/SignInDisplay";
 
 class App extends Component {
   constructor() {
@@ -98,18 +97,12 @@ class App extends Component {
 
         <Grid container component="main" className="left-container">
           <CssBaseline/>
-
-          <MemoList memos={this.state.memos} />
-          <SignInForm />
         </Grid>
 
-        <SignInSide memos={this.state.memos}/>
-        <ShareInput value={this.state.inputValue} changeInputValue={this.changeInputValue} addPost={this.addPost}/>
-
         <Switch>
-          <Route path="/sign_up" render={() => <SignInSide memos={this.state.memos} />} />
-          <Route path="/sign_in" render={() => <SignInSide memos={this.state.memos} />} />
-          <Redirect to="/" />;
+          <Route exact path="/" render={() => <SignInDisplay memos={this.state.memos} />} />
+          <Route path="/sign_up" render={() => <SignInDisplay memos={this.state.memos} />} />
+          <Route path="/sign_in" render={() => <SignInDisplay memos={this.state.memos} />} />
         </Switch>
       </div>
     );

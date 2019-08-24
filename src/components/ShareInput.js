@@ -12,4 +12,3 @@ class ShareInput extends Component {
 }
 
 export default ShareInput;
-
