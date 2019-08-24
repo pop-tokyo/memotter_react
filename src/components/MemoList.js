@@ -84,7 +84,7 @@ export default function MemoList(props) {
       <Typography variant="h6" className="list">
         最新のみんなのmemos
       </Typography>
-      <div className={classes.demo}>
+      <div className="MainDisplay-memos">
         <List dense={dense}>
           {list}
         </List>

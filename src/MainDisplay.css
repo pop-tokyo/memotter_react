@@ -1,0 +1,10 @@
+.MainDisplay-memos {
+  width: 40%;
+  margin: 0 auto;
+}
+
+@media all and (max-width: 640px) {
+  .MainDisplay-memos {
+    width: 100%;
+  }
+}

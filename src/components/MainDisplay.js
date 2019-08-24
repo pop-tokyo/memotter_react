@@ -29,6 +29,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MemoList from "./MemoList";
 import ShareInput from "./ShareInput";
 
+import '../MainDisplay.css';
+
 export default function MainDisplay(props) {
   return (
     <Grid container component="main" className="left-container">
