@@ -34,6 +34,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import SignInSide from './components/SignIn';
 import ShareInput from "./components/ShareInput";
 import MemoList from "./components/MemoList";
+import SignInForm from "./components/SignInForm";
 
 class App extends Component {
   constructor() {
@@ -99,6 +100,7 @@ class App extends Component {
           <CssBaseline/>
 
           <MemoList memos={this.state.memos} />
+          <SignInForm />
         </Grid>
 
         <SignInSide memos={this.state.memos}/>
