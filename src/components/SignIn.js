@@ -11,7 +11,17 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import IconButton from '@material-ui/core/IconButton';
+import FolderIcon from '@material-ui/icons/Folder';
+import DeleteIcon from '@material-ui/icons/Delete';
+import axios from "../axiosSetting";
 
 function Copyright() {
   return (
@@ -60,25 +70,45 @@ const useStyles = makeStyles(theme => ({
 
 export default function SignInSide(props) {
   const classes = useStyles();
+  const [dense, setDense] = React.useState(false);
+  const list = props.memos.map((memo, index) => {
+    return (
+      <ListItem key={index}>
+        <ListItemAvatar>
+          <Avatar>
+            <FolderIcon/>
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={memo.content}
+          secondary={null}
+        />
+        <ListItemSecondaryAction>
+          <IconButton edge="end" aria-label="delete">
+            <DeleteIcon/>
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
+    )
+  });
 
   return (
-    <Grid container component="main" className={classes.root}>
-      <CssBaseline />
-      <Grid item xs={false} sm={4} md={7}>
-        <ul>
-          {props.memos.map(memo => {
-            return (
-              <li key={memo.id}>
-                {memo.content}
-              </li>
-            );
-          })}
-        </ul>
+    <Grid container component="main" className="left-container">
+      <CssBaseline/>
+      <Grid item xs={12} md={6}>
+        <Typography variant="h6" className="list">
+          最新のみんなのmemos
+        </Typography>
+        <div className={classes.demo}>
+          <List dense={dense}>
+            {list}
+          </List>
+        </div>
       </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockOutlinedIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign in
@@ -107,7 +137,7 @@ export default function SignInSide(props) {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<Checkbox value="remember" color="primary"/>}
               label="Remember me"
             />
             <Button
@@ -132,7 +162,7 @@ export default function SignInSide(props) {
               </Grid>
             </Grid>
             <Box mt={5}>
-              <Copyright />
+              <Copyright/>
             </Box>
           </form>
         </div>

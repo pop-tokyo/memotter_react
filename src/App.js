@@ -3,7 +3,6 @@ import './App.css';
 import axios from './axiosSetting.js';
 import update from 'react-addons-update';
 import SignInSide from './components/SignIn';
-import Grid from '@material-ui/core/Grid';
 
 import ShareInput from "./components/ShareInput";
 
@@ -14,14 +13,14 @@ class App extends Component {
     this.state = {
       memos: [],
       inputValue: '',
-      current_user: '1234'
+      current_page: ''
     };
 
     this.changeInputValue = this.changeInputValue.bind(this);
     this.addPost = this.addPost.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     axios
       .get('/api/v1/memos')
       .then((response) => {
