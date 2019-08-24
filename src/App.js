@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 
 import './App.css';
+// どこでimportしても設定が効いてしまうので、一旦ここに書いた
+import './MainDisplay.css';
 
 import axios from './axiosSetting.js';
 import update from 'react-addons-update';

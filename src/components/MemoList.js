@@ -81,7 +81,7 @@ export default function MemoList(props) {
 
   return (
     <Grid item xs={props.gridXs} md={props.gridMd}>
-      <div className="MainDisplay-memos">
+      <div className={props.isMainDisplay ? "MainDisplay-memos" : ""}>
         <Typography variant="h6" className="list">
           最新のみんなのmemos
         </Typography>

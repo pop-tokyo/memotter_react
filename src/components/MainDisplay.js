@@ -29,8 +29,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MemoList from "./MemoList";
 import ShareInput from "./ShareInput";
 
-import '../MainDisplay.css';
-
 export default function MainDisplay(props) {
   return (
     <Grid container component="main" className="left-container">
@@ -43,7 +41,8 @@ export default function MainDisplay(props) {
                   gridMd={12} />
       <MemoList memos={props.memos}
                 gridXs={12}
-                gridMd={12} />
+                gridMd={12}
+                isMainDisplay={true} />
     </Grid>
   );
 }
