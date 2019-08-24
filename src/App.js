@@ -9,6 +9,7 @@ import { Redirect, Route, Switch } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 
 import MainDisplay from "./components/MainDisplay";
+import SignUpDisplay from "./components/SignUpDisplay";
 import SignInDisplay from "./components/SignInDisplay";
 
 class App extends Component {
@@ -76,7 +77,7 @@ class App extends Component {
                                                            inputValue={this.state.inputValue}
                                                            changeInputValue={this.changeInputValue}
                                                            addPost={this.addPost} />}/>
-          <Route exact path="/sign_up" render={() => <SignInDisplay memos={this.state.memos} />} />
+          <Route exact path="/sign_up" render={() => <SignUpDisplay memos={this.state.memos} />} />
           <Route exact path="/sign_in" render={() => <SignInDisplay memos={this.state.memos} />} />
         </Switch>
       </div>
