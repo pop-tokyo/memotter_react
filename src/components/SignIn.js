@@ -1,4 +1,8 @@
 import React from 'react';
+
+// @material-ui の Link と衝突するので RouterLink にしている
+import { Link as RouterLink } from 'react-router-dom';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -21,7 +25,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
-import axios from "../axiosSetting";
 
 function Copyright() {
   return (
@@ -111,7 +114,7 @@ export default function SignInSide(props) {
             <LockOutlinedIcon/>
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            <RouterLink to='/sign_in'>Sign in</RouterLink>
           </Typography>
           <form className={classes.form} noValidate>
             <TextField
@@ -157,7 +160,7 @@ export default function SignInSide(props) {
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                  <RouterLink to='/sign_up'>Don't have an account? Sign Up</RouterLink>
                 </Link>
               </Grid>
             </Grid>

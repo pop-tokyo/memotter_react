@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
+
 import './App.css';
+
 import axios from './axiosSetting.js';
 import update from 'react-addons-update';
-import SignInSide from './components/SignIn';
+import { Redirect, Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
 
+import SignInSide from './components/SignIn';
 import ShareInput from "./components/ShareInput";
 
 class App extends Component {
@@ -61,12 +65,18 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>Memotter</h1>
+          <h1>
+            <Link to='/'>Memotter</Link>
+          </h1>
         </header>
         <SignInSide memos={this.state.memos}/>
-        <div className="ShareInput">
-          <ShareInput value={this.state.inputValue} changeInputValue={this.changeInputValue} addPost={this.addPost}/>
-        </div>
+        <ShareInput value={this.state.inputValue} changeInputValue={this.changeInputValue} addPost={this.addPost}/>
+
+        <Switch>
+          <Route path="/sign_up" render={() => <SignInSide memos={this.state.memos} />} />
+          <Route path="/sign_in" render={() => <SignInSide memos={this.state.memos} />} />
+          <Redirect to="/" />;
+        </Switch>
       </div>
     );
   }
