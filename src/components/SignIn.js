@@ -39,42 +39,6 @@ function Copyright() {
   );
 }
 
-// function getMemos(){
-//   axios
-//     .get('/api/v1/memos')
-//     .then((response) => {
-//       console.log(response);
-//       return response.data
-//     })
-//     .catch((error) => {
-//       console.log(error);
-//     });
-// }
-
-// function generate() {
-//   var memos = getMemos()
-//   return memos.map(value =>
-//     React.cloneElement(<ListItem>
-//       <ListItemAvatar>
-//         <Avatar>
-//           <FolderIcon/>
-//         </Avatar>
-//       </ListItemAvatar>
-//       <ListItemText
-//         primary={value.content}
-//         secondary={null}
-//       />
-//       <ListItemSecondaryAction>
-//         <IconButton edge="end" aria-label="delete">
-//           <DeleteIcon/>
-//         </IconButton>
-//       </ListItemSecondaryAction>
-//     </ListItem>, {
-//       key: value,
-//     },)
-//   );
-// }
-
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
@@ -109,9 +73,22 @@ export default function SignInSide(props) {
   const [dense, setDense] = React.useState(false);
   const list = props.memos.map((memo, index) => {
     return (
-      <li key={index}>
-        {memo.content}
-      </li>
+      <ListItem key={index}>
+        <ListItemAvatar>
+          <Avatar>
+            <FolderIcon/>
+          </Avatar>
+        </ListItemAvatar>
+        <ListItemText
+          primary={memo.content}
+          secondary={null}
+        />
+        <ListItemSecondaryAction>
+          <IconButton edge="end" aria-label="delete">
+            <DeleteIcon/>
+          </IconButton>
+        </ListItemSecondaryAction>
+      </ListItem>
     )
   });
 
@@ -120,7 +97,7 @@ export default function SignInSide(props) {
       <CssBaseline/>
       <Grid item xs={12} md={6}>
         <Typography variant="h6" className="list">
-          Avatar with text and icon
+          最新のみんなのmemos
         </Typography>
         <div className={classes.demo}>
           <List dense={dense}>
