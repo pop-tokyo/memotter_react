@@ -82,9 +82,21 @@ export default function SignInForm(props) {
           <LockOutlinedIcon/>
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
         <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="username"
+            label="Username"
+            type="username"
+            id="username"
+            autoComplete="username"
+            autoFocus
+          />
           <TextField
             variant="outlined"
             margin="normal"
@@ -94,7 +106,6 @@ export default function SignInForm(props) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            autoFocus
           />
           <TextField
             variant="outlined"
@@ -118,7 +129,7 @@ export default function SignInForm(props) {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Sign Up
           </Button>
           <Grid container>
             <Grid item xs>
@@ -128,7 +139,7 @@ export default function SignInForm(props) {
             </Grid>
             <Grid item>
               <Link href="#" variant="body2">
-                <RouterLink to='/sign_up'>Don't have an account? Sign up</RouterLink>
+                <RouterLink to='/sign_in'>Sign in</RouterLink>
               </Link>
             </Grid>
           </Grid>

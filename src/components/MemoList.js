@@ -80,11 +80,12 @@ export default function MemoList(props) {
   });
 
   return (
-    <Grid item xs={12} md={6}>
-      <Typography variant="h6" className="list">
-        最新のみんなのmemos
-      </Typography>
-      <div className={classes.demo}>
+    <Grid item xs={props.gridXs} md={props.gridMd}>
+      <div className={props.isMainDisplay ? "MainDisplay-memos" : ""}>
+        <Typography variant="h6" className="list">
+          最新のみんなのmemos
+        </Typography>
+
         <List dense={dense}>
           {list}
         </List>
