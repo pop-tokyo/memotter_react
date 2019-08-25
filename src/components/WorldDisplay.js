@@ -11,7 +11,7 @@ export default function WorldDisplay(props) {
   return (
     <Grid container component="main" className="left-container">
       <CssBaseline/>
-      <Menu/>
+      <Menu memos={props.memos}/>
     </Grid>
   );
 }

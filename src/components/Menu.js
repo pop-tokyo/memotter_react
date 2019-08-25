@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function VerticalTabs() {
+export default function VerticalTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -72,32 +72,7 @@ export default function VerticalTabs() {
         <Tab label="coming soon..." {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <MemoList memos={[
-          {
-            "id": 3,
-            "user_id": 1,
-            "content": " hoge",
-            "edit": false,
-            "created_at": "2019-08-24T04:54:15.772Z",
-            "updated_at": "2019-08-24T04:54:15.772Z"
-          },
-          {
-            "id": 2,
-            "user_id": 1,
-            "content": "メモ2",
-            "edit": false,
-            "created_at": "2019-08-18T03:42:11.690Z",
-            "updated_at": "2019-08-18T03:42:11.690Z"
-          },
-          {
-            "id": 1,
-            "user_id": 1,
-            "content": "メモ1",
-            "edit": false,
-            "created_at": "2019-08-18T03:42:11.675Z",
-            "updated_at": "2019-08-18T03:42:11.675Z"
-          }
-        ]}
+        <MemoList memos={props.memos}
                   gridXs={12}
                   gridMd={12} />
       </TabPanel>
