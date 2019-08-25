@@ -13,6 +13,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import MainDisplay from "./components/MainDisplay";
 import SignUpDisplay from "./components/SignUpDisplay";
 import SignInDisplay from "./components/SignInDisplay";
+import WorldDisplay from "./components/WorldDisplay";
 
 class App extends Component {
   constructor() {
@@ -81,6 +82,7 @@ class App extends Component {
                                                            addPost={this.addPost} />}/>
           <Route exact path="/sign_up" render={() => <SignUpDisplay memos={this.state.memos} />} />
           <Route exact path="/sign_in" render={() => <SignInDisplay memos={this.state.memos} />} />
+          <Route exact path="/world" render={() => <WorldDisplay memos={this.state.memos} />} />
         </Switch>
       </div>
     );
