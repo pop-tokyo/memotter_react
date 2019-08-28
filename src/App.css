@@ -1,9 +1,22 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.full_page {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
 .App {
   text-align: center;
 }
 
-.App-header {
-  color: #393939;
+.App-title {
+  background-color: black;
+  margin: 0px;
+  padding: 10px;
 }
 
 .App-header a {
@@ -11,5 +24,5 @@
 }
 
 .App-header a:visited {
-  color: #393939;
+  color: white;
 }

@@ -25,6 +25,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ShareInput from "./ShareInput";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -85,6 +86,7 @@ export default function MemoList(props) {
         <Typography variant="h6" className="list">
           最新のみんなのmemos
         </Typography>
+        <ShareInput/>
 
         <List dense={dense}>
           {list}
