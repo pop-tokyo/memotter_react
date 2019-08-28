@@ -82,7 +82,10 @@ class App extends Component {
                                                            addPost={this.addPost} />}/>
           <Route exact path="/sign_up" render={() => <SignUpDisplay memos={this.state.memos} />} />
           <Route exact path="/sign_in" render={() => <SignInDisplay memos={this.state.memos} />} />
-          <Route exact path="/world" render={() => <WorldDisplay memos={this.state.memos} />} />
+          <Route exact path="/world" render={() => <WorldDisplay memos={this.state.memos}
+                                                                 inputValue={this.state.inputValue}
+                                                                 changeInputValue={this.changeInputValue}
+                                                                 addPost={this.addPost}/>}/>
         </Switch>
       </div>
     );

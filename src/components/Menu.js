@@ -73,6 +73,9 @@ export default function VerticalTabs(props) {
       </Tabs>
       <TabPanel value={value} index={0}>
         <MemoList memos={props.memos}
+                  inputValue={props.inputValue}
+                  changeInputValue={props.changeInputValue}
+                  addPost={props.addPost}
                   gridXs={12}
                   gridMd={12} />
       </TabPanel>
