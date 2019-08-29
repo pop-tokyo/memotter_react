@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useLayoutEffect} from 'react';
 
 import './App.css';
 // どこでimportしても設定が効いてしまうので、一旦ここに書いた
@@ -6,9 +6,9 @@ import './MainDisplay.css';
 
 import axios from './axiosSetting.js';
 import update from 'react-addons-update';
-import { Redirect, Route, Switch } from 'react-router';
+import {Redirect, Route, Switch} from 'react-router';
 // @material-ui の Link と衝突するので RouterLink にしている
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 
 import MainDisplay from "./components/MainDisplay";
 import SignUpDisplay from "./components/SignUpDisplay";
@@ -22,7 +22,8 @@ class App extends Component {
     this.state = {
       memos: [],
       inputValue: '',
-      current_page: ''
+      current_page: '',
+      access_token: null
     };
 
     this.changeInputValue = this.changeInputValue.bind(this);
@@ -66,26 +67,49 @@ class App extends Component {
       });
   }
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">
-            <RouterLink to='/'>Memotter</RouterLink>
-          </h1>
-        </header>
+  setToken() {
+    var token = localStorage.getItem('accessToken');
+    // TODO FIX
+    // this.setState({
+    //   access_token: token
+    // });
+  }
 
-        <Switch>
-          <Route exact path="/" render={() => <MainDisplay memos={this.state.memos}
-                                                           inputValue={this.state.inputValue}
-                                                           changeInputValue={this.changeInputValue}
-                                                           addPost={this.addPost} />}/>
-          <Route exact path="/sign_up" render={() => <SignUpDisplay memos={this.state.memos} />} />
-          <Route exact path="/sign_in" render={() => <SignInDisplay memos={this.state.memos} />} />
-          <Route exact path="/world" render={() => <WorldDisplay memos={this.state.memos} />} />
-        </Switch>
-      </div>
-    );
+  render() {
+    this.setToken();
+    if (this.state.access_token == null) {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">
+              <RouterLink to='/'>Memotter</RouterLink>
+            </h1>
+          </header>
+          {/*Signinさせた後にlocalstorageにsetする*/}
+          <SignInDisplay memos={this.state.memos}/>}/>
+        </div>
+      );
+    } else {
+      return (
+        <div className="App">
+          <header className="App-header">
+            <h1 className="App-title">
+              <RouterLink to='/'>Memotter</RouterLink>
+            </h1>
+          </header>
+
+          <Switch>
+            <Route exact path="/" render={() => <MainDisplay memos={this.state.memos}
+                                                             inputValue={this.state.inputValue}
+                                                             changeInputValue={this.changeInputValue}
+                                                             addPost={this.addPost}/>}/>
+            <Route exact path="/sign_up" render={() => <SignUpDisplay memos={this.state.memos}/>}/>
+            <Route exact path="/sign_in" render={() => <SignInDisplay memos={this.state.memos}/>}/>
+            <Route exact path="/world" render={() => <WorldDisplay memos={this.state.memos}/>}/>
+          </Switch>
+        </div>
+      );
+    }
   }
 }
 
