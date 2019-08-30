@@ -31,6 +31,13 @@ class App extends Component {
   }
 
   componentWillMount() {
+
+    var token = localStorage.getItem('accessToken');
+    // TODO FIX
+    this.setState({
+      access_token: token
+    });
+
     axios
       .get('/api/v1/memos')
       .then((response) => {
@@ -67,16 +74,7 @@ class App extends Component {
       });
   }
 
-  setToken() {
-    var token = localStorage.getItem('accessToken');
-    // TODO FIX
-    // this.setState({
-    //   access_token: token
-    // });
-  }
-
   render() {
-    this.setToken();
     if (this.state.access_token == null) {
       return (
         <div className="App">
