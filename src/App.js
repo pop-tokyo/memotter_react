@@ -10,6 +10,7 @@ import {Redirect, Route, Switch} from 'react-router';
 // @material-ui の Link と衝突するので RouterLink にしている
 import {Link as RouterLink} from 'react-router-dom';
 
+import Auth from "./components/Auth";
 import MainDisplay from "./components/MainDisplay";
 import SignUpDisplay from "./components/SignUpDisplay";
 import SignInDisplay from "./components/SignInDisplay";
@@ -33,7 +34,6 @@ class App extends Component {
   componentWillMount() {
 
     var token = localStorage.getItem('accessToken');
-    // TODO FIX
     this.setState({
       access_token: token
     });
@@ -75,39 +75,27 @@ class App extends Component {
   }
 
   render() {
-    if (this.state.access_token == null) {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">
-              <RouterLink to='/'>Memotter</RouterLink>
-            </h1>
-          </header>
-          {/*Signinさせた後にlocalstorageにsetする*/}
-          <SignInDisplay memos={this.state.memos}/>}/>
-        </div>
-      );
-    } else {
-      return (
-        <div className="App">
-          <header className="App-header">
-            <h1 className="App-title">
-              <RouterLink to='/'>Memotter</RouterLink>
-            </h1>
-          </header>
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">
+            <RouterLink to='/'>Memotter</RouterLink>
+          </h1>
+        </header>
 
-          <Switch>
-            <Route exact path="/" render={() => <MainDisplay memos={this.state.memos}
-                                                             inputValue={this.state.inputValue}
-                                                             changeInputValue={this.changeInputValue}
-                                                             addPost={this.addPost}/>}/>
-            <Route exact path="/sign_up" render={() => <SignUpDisplay memos={this.state.memos}/>}/>
-            <Route exact path="/sign_in" render={() => <SignInDisplay memos={this.state.memos}/>}/>
+        <Switch>
+          <Route exact path="/sign_up" render={() => <SignUpDisplay memos={this.state.memos}/>}/>
+          <Route exact path="/sign_in" render={() => <SignInDisplay memos={this.state.memos}/>}/>
+          <Route exact path="/" render={() => <MainDisplay memos={this.state.memos}
+                                                           inputValue={this.state.inputValue}
+                                                           changeInputValue={this.changeInputValue}
+                                                           addPost={this.addPost}/>}/>
+          <Auth>
             <Route exact path="/world" render={() => <WorldDisplay memos={this.state.memos}/>}/>
-          </Switch>
-        </div>
-      );
-    }
+          </Auth>
+        </Switch>
+      </div>
+    );
   }
 }
 
