@@ -86,7 +86,11 @@ export default function MemoList(props) {
         <Typography variant="h6" className="list">
           最新のみんなのmemos
         </Typography>
-        <ShareInput/>
+        <ShareInput value={props.inputValue}
+                    changeInputValue={props.changeInputValue}
+                    addPost={props.addPost}
+                    gridXs={12}
+                    gridMd={12} />
 
         <List dense={dense}>
           {list}
