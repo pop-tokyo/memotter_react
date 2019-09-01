@@ -8,4 +8,6 @@ const axios = axiosBase.create({
   responseType: 'json'
 });
 
+// FIX this yields security problem
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 module.exports = axios;

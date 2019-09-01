@@ -1,7 +1,7 @@
 import React from 'react';
 
 // @material-ui の Link と衝突するので RouterLink にしている
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink, Redirect} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -16,7 +16,7 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
-
+import axios from './../axiosSetting.js';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -40,6 +40,25 @@ function Copyright() {
       </Link>
     </Typography>
   );
+}
+
+function login(){
+  axios
+    .post('/api/v1/auth', {
+      "email": "sample-@example.com",
+      "password": "password",
+      "password_confirm6ation": "password",
+      "username": "sample-6"
+    })
+    .then((response) => {
+      console.log(response);
+      localStorage.setItem('accessToken', response.headers["access-token"]);
+      console.log(localStorage.getItem('accessToken'));
+      return <Redirect to={'/sign_in'}/>
+    })
+    .catch((error) => {
+      console.log(error)
+    });
 }
 
 const useStyles = makeStyles(theme => ({
@@ -128,6 +147,7 @@ export default function SignInForm(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={login()}
           >
             Sign Up
           </Button>
