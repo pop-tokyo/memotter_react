@@ -47,13 +47,12 @@ function logIn(){
     .post('/api/v1/auth', {
       "email": "sample-@example.com",
       "password": "password",
-      "password_confirm6ation": "password",
+      "password_confirmation": "password",
       "username": "sample-6"
     })
     .then((response) => {
       console.log(response);
       localStorage.setItem('accessToken', response.headers["access-token"]);
-      console.log(localStorage.getItem('accessToken'));
       return <Redirect to={'/sign_in'}/>
     })
     .catch((error) => {
