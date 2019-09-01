@@ -42,7 +42,7 @@ function Copyright() {
   );
 }
 
-function login(){
+function logIn(){
   axios
     .post('/api/v1/auth', {
       "email": "sample-@example.com",
@@ -147,7 +147,7 @@ export default function SignInForm(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={login()}
+            onClick={logIn()}
           >
             Sign Up
           </Button>
@@ -164,7 +164,7 @@ export default function SignInForm(props) {
             </Grid>
           </Grid>
           <Box mt={5}>
-            <Copyright/>
+            <Copyright />
           </Box>
         </form>
       </div>
