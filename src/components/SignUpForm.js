@@ -41,24 +41,6 @@ function Copyright() {
   );
 }
 
-function logIn(){
-  axios
-    .post('/api/v1/auth', {
-      "email": "sample-@example.com",
-      "password": "password",
-      "password_confirmation": "password",
-      "username": "sample-6"
-    })
-    .then((response) => {
-      console.log(response);
-      localStorage.setItem('accessToken', response.headers["access-token"]);
-      return <Redirect to={'/sign_in'}/>
-    })
-    .catch((error) => {
-      console.log(error)
-    });
-}
-
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
@@ -91,6 +73,28 @@ const useStyles = makeStyles(theme => ({
 export default function SignInForm(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [password_confirmation, setPassword_confirmation] = React.useState('');
+  const [username, setUsername] = React.useState('');
+
+  function logIn(){
+    axios
+      .post('/api/v1/auth', {
+        "email": email,
+        "password": password,
+        "password_confirmation": password_confirmation,
+        "username": username
+      })
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem('accessToken', response.headers["access-token"]);
+        return <Redirect to={'/sign_in'}/>
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
 
   return (
     <Grid item xs={props.gridXs} md={props.gridMd} component={Paper} elevation={6} square>
@@ -113,6 +117,7 @@ export default function SignInForm(props) {
             id="username"
             autoComplete="username"
             autoFocus
+            onChange={(e)=> setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -123,6 +128,7 @@ export default function SignInForm(props) {
             label="Email Address"
             name="email"
             autoComplete="email"
+            onChange={(e)=> setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -134,6 +140,19 @@ export default function SignInForm(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e)=> setPassword(e.target.value)}
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password_confirmation"
+            label="Confirmation Password"
+            type="password_confirmation"
+            id="password_confirmation"
+            autoComplete="current-password"
+            onChange={(e)=> setPassword_confirmation(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary"/>}
@@ -145,7 +164,7 @@ export default function SignInForm(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={logIn()}
+            onClick={() => logIn()}
           >
             Sign Up
           </Button>
