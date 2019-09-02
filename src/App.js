@@ -21,14 +21,14 @@ class App extends Component {
     super();
 
     this.state = {
-      memos: [],
       inputValue: '',
       current_page: '',
       access_token: null
     };
 
     this.changeInputValue = this.changeInputValue.bind(this);
-    this.addPost = this.addPost.bind(this);
+    // TODO move to post Dialog
+    // this.addPost = this.addPost.bind(this);
   }
 
   componentWillMount() {
@@ -37,19 +37,6 @@ class App extends Component {
     this.setState({
       access_token: token
     });
-
-    axios
-      .get('/api/v1/memos')
-      .then((response) => {
-        console.log(response);
-
-        this.setState({
-          memos: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   changeInputValue(e) {
@@ -58,21 +45,22 @@ class App extends Component {
     })
   }
 
-  addPost() {
-    axios.post('/api/v1/memos', {"memo": {"content": this.state.inputValue}})
-      .then((response) => {
-        console.log(response);
-
-        const newData = update(this.state.memos, {$unshift: [response.data]})
-        this.setState({
-          memos: newData,
-          inputValue: ''
-        })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // TODO move to post Dialog
+  // addPost() {
+  //   axios.post('/api/v1/memos', {"memo": {"content": this.state.inputValue}})
+  //     .then((response) => {
+  //       console.log(response);
+  //
+  //       const newData = update(this.state.memos, {$unshift: [response.data]})
+  //       this.setState({
+  //         memos: newData,
+  //         inputValue: ''
+  //       })
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
   render() {
     return (
@@ -84,14 +72,14 @@ class App extends Component {
         </header>
 
         <Switch>
-          <Route exact path="/sign_up" render={() => <SignUpDisplay memos={this.state.memos}/>}/>
-          <Route exact path="/sign_in" render={() => <SignInDisplay memos={this.state.memos}/>}/>
-          <Route exact path="/" render={() => <MainDisplay memos={this.state.memos}
-                                                           inputValue={this.state.inputValue}
-                                                           changeInputValue={this.changeInputValue}
-                                                           addPost={this.addPost}/>}/>
+          <Route exact path="/sign_up" render={() => <SignUpDisplay/>}/>
+          <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
+          <Route exact path="/" render={() => <MainDisplay
+            inputValue={this.state.inputValue}
+            changeInputValue={this.changeInputValue}
+            addPost={this.addPost}/>}/>
           <Auth>
-            <Route exact path="/world" render={() => <WorldDisplay memos={this.state.memos}/>}/>
+            <Route exact path="/world" render={() => <WorldDisplay/>}/>
           </Auth>
         </Switch>
       </div>

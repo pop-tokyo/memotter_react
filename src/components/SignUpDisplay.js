@@ -1,7 +1,7 @@
 import React from 'react';
 
 // @material-ui の Link と衝突するので RouterLink にしている
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -25,19 +25,18 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import MemoList from "./MemoList";
 import SignUpForm from "./SignUpForm";
 
-export default function SignInDisplay(props) {
+export default function SignInDisplay() {
   return (
     <Grid container component="main" className="left-container">
       <CssBaseline/>
 
-      <MemoList memos={props.memos}
-                gridXs={6}
-                gridMd={6} />
-      <SignUpForm gridXs={6} gridMd={6} />
+      <MemoList
+        gridXs={6}
+        gridMd={6}/>
+      <SignUpForm gridXs={6} gridMd={6}/>
     </Grid>
   );
 }

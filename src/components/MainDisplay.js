@@ -16,11 +16,11 @@ export default function MainDisplay(props) {
                   changeInputValue={props.changeInputValue}
                   addPost={props.addPost}
                   gridXs={12}
-                  gridMd={12} />
-      <MemoList memos={props.memos}
-                gridXs={12}
-                gridMd={12}
-                isMainDisplay={true} />
+                  gridMd={12}/>
+      <MemoList
+        gridXs={12}
+        gridMd={12}
+        isMainDisplay={true}/>
     </Grid>
   );
 }
