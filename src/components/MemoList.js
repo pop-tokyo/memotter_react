@@ -62,7 +62,7 @@ export default function MemoList(props) {
   const [dense, setDense] = React.useState(false);
   const [memos, setMemos] = React.useState([]);
 
-  (function getMemos() {
+  function getMemos() {
     axios
       .get('/api/v1/memos')
       .then((response) => {
@@ -72,7 +72,11 @@ export default function MemoList(props) {
       .catch((error) => {
         console.log(error);
       });
-  })();
+  }
+
+  React.useEffect(() => {
+    getMemos();
+  }, []);
 
   const list = memos.map((memo, index) => {
     return (
