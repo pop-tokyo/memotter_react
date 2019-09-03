@@ -72,7 +72,7 @@ export default function VerticalTabs(props) {
         <Tab label="coming soon..." {...a11yProps(1)} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <MemoList memos={props.memos}
+        <MemoList
                   inputValue={props.inputValue}
                   changeInputValue={props.changeInputValue}
                   addPost={props.addPost}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // @material-ui の Link と衝突するので RouterLink にしている
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -26,6 +26,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ShareInput from "./ShareInput";
+import axios from "../axiosSetting";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,7 +60,25 @@ const useStyles = makeStyles(theme => ({
 export default function MemoList(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
-  const list = props.memos.map((memo, index) => {
+  const [memos, setMemos] = React.useState([]);
+
+  function getMemos() {
+    axios
+      .get('/api/v1/memos')
+      .then((response) => {
+        console.log(response);
+        setMemos(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  React.useEffect(() => {
+    getMemos();
+  }, []);
+
+  const list = memos.map((memo, index) => {
     return (
       <ListItem key={index}>
         <ListItemAvatar>
@@ -90,7 +109,7 @@ export default function MemoList(props) {
                     changeInputValue={props.changeInputValue}
                     addPost={props.addPost}
                     gridXs={12}
-                    gridMd={12} />
+                    gridMd={12}/>
 
         <List dense={dense}>
           {list}
