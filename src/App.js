@@ -21,18 +21,17 @@ class App extends Component {
     super();
 
     this.state = {
+      memos: [],
       inputValue: '',
       current_page: '',
       access_token: null
     };
 
     this.changeInputValue = this.changeInputValue.bind(this);
-    // TODO move to post Dialog
-    // this.addPost = this.addPost.bind(this);
+    this.addPost = this.addPost.bind(this);
   }
 
   componentDidMount() {
-
     var token = localStorage.getItem('accessToken');
     this.setState({
       access_token: token
@@ -45,22 +44,21 @@ class App extends Component {
     })
   }
 
-  // TODO move to post Dialog
-  // addPost() {
-  //   axios.post('/api/v1/memos', {"memo": {"content": this.state.inputValue}})
-  //     .then((response) => {
-  //       console.log(response);
-  //
-  //       const newData = update(this.state.memos, {$unshift: [response.data]})
-  //       this.setState({
-  //         memos: newData,
-  //         inputValue: ''
-  //       })
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
+  addPost() {
+    axios.post('/api/v1/memos', {"memo": {"content": this.state.inputValue}})
+      .then((response) => {
+        console.log(response);
+
+        const newData = update(this.state.memos, {$unshift: [response.data]})
+        this.setState({
+          memos: newData,
+          inputValue: ''
+        })
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   render() {
     return (

@@ -34,9 +34,7 @@ export default function SignInDisplay(props) {
     <Grid container component="main" className="left-container">
       <CssBaseline/>
 
-      <MemoList
-        gridXs={6}
-        gridMd={6}/>
+      <MemoList gridXs={6} gridMd={6}/>
       <SignInForm gridXs={6} gridMd={6}/>
     </Grid>
   );
