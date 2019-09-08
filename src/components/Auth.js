@@ -3,6 +3,6 @@ import { Redirect} from "react-router";
 
 export default function Auth(props) {
   return (
-    props.access_token != null? props.children : <Redirect to={'/sign_in'}/>
+    props.access_token != null? props.children : <Redirect to={'/sign_up'}/>
   )
 }

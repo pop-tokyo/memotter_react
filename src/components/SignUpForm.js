@@ -79,21 +79,23 @@ export default function SignInForm(props) {
   const [password_confirmation, setPassword_confirmation] = React.useState('');
   const [username, setUsername] = React.useState('');
 
-  const logIn = async (e) => {
-    try {
-      const result = await axios.post('/api/v1/auth', {
+  function logIn() {
+    axios
+      .post('/api/v1/auth', {
         "email": email,
         "password": password,
         "password_confirmation": password_confirmation,
         "username": username
+      })
+      .then((response) => {
+        localStorage.setItem('accessToken', response.headers["access-token"]);
+        alert(localStorage.setItem('accessToken'));
+        props.history.push('/world');
+      })
+      .catch((error) => {
+        console.log(error)
       });
-      alert(result);
-      localStorage.setItem('accessToken', result.headers["access-token"]);
-      alert("hoge");
-      props.history.push('/world');
-    } catch (e) {
-      console.log(e)
-    }};
+  }
 
   return (
     <Grid item xs={props.gridXs} md={props.gridMd} component={Paper} elevation={6} square>
