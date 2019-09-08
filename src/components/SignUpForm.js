@@ -89,8 +89,8 @@ export default function SignInForm(props) {
       })
       .then((response) => {
         localStorage.setItem('accessToken', response.headers["access-token"]);
-        alert(localStorage.setItem('accessToken'));
         props.history.push('/world');
+        props.setCurrentPage('/world');
       })
       .catch((error) => {
         console.log(error)

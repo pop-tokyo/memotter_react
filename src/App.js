@@ -34,6 +34,12 @@ class App extends Component {
     });
   }
 
+  setCurrentPage = (page) => {
+    this.setState({
+      current_page: page
+      })
+  };
+
   render() {
     return (
       <div className="App">
@@ -43,7 +49,7 @@ class App extends Component {
           </h1>
         </header>
         <Switch>
-          <Route exact path="/sign_up" render={() => <SignUpDisplay history={history}/>}/>
+          <Route exact path="/sign_up" render={() => <SignUpDisplay history={history} setCurrentPage={this.setCurrentPage}/>}/>
           <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
           <Route exact path="/" render={() => <MainDisplay/>}/>
           <Auth>
