@@ -16,6 +16,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import axios from './../axiosSetting.js';
+import history from '../history';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -79,6 +80,7 @@ export default function SignInForm(props) {
   const [username, setUsername] = React.useState('');
 
   function logIn(){
+    props.history.push('/world');
     axios
       .post('/api/v1/auth', {
         "email": email,
@@ -89,7 +91,7 @@ export default function SignInForm(props) {
       .then((response) => {
         console.log(response);
         localStorage.setItem('accessToken', response.headers["access-token"]);
-        return <Redirect to={'/sign_in'}/>
+        alert("joge");
       })
       .catch((error) => {
         console.log(error)

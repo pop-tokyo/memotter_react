@@ -28,7 +28,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import MemoList from "./MemoList";
 import SignUpForm from "./SignUpForm";
 
-export default function SignInDisplay() {
+export default function SignInDisplay(props) {
   return (
     <Grid container component="main" className="left-container">
       <CssBaseline/>
@@ -36,7 +36,7 @@ export default function SignInDisplay() {
       <MemoList
         gridXs={6}
         gridMd={6}/>
-      <SignUpForm gridXs={6} gridMd={6}/>
+      <SignUpForm history={props.history} gridXs={6} gridMd={6}/>
     </Grid>
   );
 }

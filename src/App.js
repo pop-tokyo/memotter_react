@@ -9,6 +9,7 @@ import update from 'react-addons-update';
 import {Redirect, Route, Switch} from 'react-router';
 // @material-ui の Link と衝突するので RouterLink にしている
 import {Link as RouterLink} from 'react-router-dom';
+import history from './history';
 
 import Auth from "./components/Auth";
 import MainDisplay from "./components/MainDisplay";
@@ -70,9 +71,8 @@ class App extends Component {
             <RouterLink to='/'>Memotter</RouterLink>
           </h1>
         </header>
-
         <Switch>
-          <Route exact path="/sign_up" render={() => <SignUpDisplay/>}/>
+          <Route exact path="/sign_up" render={() => <SignUpDisplay history={history}/>}/>
           <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
           <Route exact path="/" render={() => <MainDisplay
             inputValue={this.state.inputValue}
