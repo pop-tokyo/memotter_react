@@ -149,7 +149,7 @@ export default function SignInForm(props) {
             fullWidth
             name="password_confirmation"
             label="Confirmation Password"
-            type="password_confirmation"
+            type="password"
             id="password_confirmation"
             autoComplete="current-password"
             onChange={(e)=> setPassword_confirmation(e.target.value)}
