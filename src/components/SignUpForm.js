@@ -79,7 +79,7 @@ export default function SignInForm(props) {
   const [password_confirmation, setPassword_confirmation] = React.useState('');
   const [username, setUsername] = React.useState('');
 
-  const logIn = async () => {
+  const logIn = async (e) => {
     try {
       const result = await axios.post('/api/v1/auth', {
         "email": email,
@@ -158,12 +158,11 @@ export default function SignInForm(props) {
             label="Remember me"
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => logIn()}
+            onClick={(e) => logIn(e)}
           >
             Sign Up
           </Button>

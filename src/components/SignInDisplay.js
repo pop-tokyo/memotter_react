@@ -26,7 +26,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import MemoList from "./MemoList";
+import MemoFamily from "./MemoFamily";
 import SignInForm from "./SignInForm";
 
 export default function SignInDisplay(props) {
@@ -34,9 +34,7 @@ export default function SignInDisplay(props) {
     <Grid container component="main" className="left-container">
       <CssBaseline/>
 
-      <MemoList
-        gridXs={6}
-        gridMd={6}/>
+      <MemoFamily gridXs={6} gridMd={6} requiredMemoInput={false} displayClassName=""/>
       <SignInForm gridXs={6} gridMd={6}/>
     </Grid>
   );

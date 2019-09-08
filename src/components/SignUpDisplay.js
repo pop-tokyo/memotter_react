@@ -26,17 +26,17 @@ import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MemoList from "./MemoList";
+
+import MemoFamily from "./MemoFamily";
 import SignUpForm from "./SignUpForm";
 
-export default function SignInDisplay(props) {
+export default function SignUpDisplay(props) {
   return (
     <Grid container component="main" className="left-container">
       <CssBaseline/>
 
-      <MemoList
-        gridXs={6}
-        gridMd={6}/>
+      <MemoFamily gridXs={6} gridMd={6} requiredMemoInput={false} displayClassName=""/>
       <SignUpForm history={props.history} gridXs={6} gridMd={6}/>
     </Grid>
   );
-}
+};
