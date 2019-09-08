@@ -79,24 +79,21 @@ export default function SignInForm(props) {
   const [password_confirmation, setPassword_confirmation] = React.useState('');
   const [username, setUsername] = React.useState('');
 
-  function logIn(){
-    props.history.push('/world');
-    axios
-      .post('/api/v1/auth', {
+  const logIn = async () => {
+    try {
+      const result = await axios.post('/api/v1/auth', {
         "email": email,
         "password": password,
         "password_confirmation": password_confirmation,
         "username": username
-      })
-      .then((response) => {
-        console.log(response);
-        localStorage.setItem('accessToken', response.headers["access-token"]);
-        alert("joge");
-      })
-      .catch((error) => {
-        console.log(error)
       });
-  }
+      alert(result);
+      localStorage.setItem('accessToken', result.headers["access-token"]);
+      alert("hoge");
+      props.history.push('/world');
+    } catch (e) {
+      console.log(e)
+    }};
 
   return (
     <Grid item xs={props.gridXs} md={props.gridMd} component={Paper} elevation={6} square>
@@ -119,7 +116,7 @@ export default function SignInForm(props) {
             id="username"
             autoComplete="username"
             autoFocus
-            onChange={(e)=> setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -130,7 +127,7 @@ export default function SignInForm(props) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            onChange={(e)=> setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -142,7 +139,7 @@ export default function SignInForm(props) {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={(e)=> setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -154,7 +151,7 @@ export default function SignInForm(props) {
             type="password"
             id="password_confirmation"
             autoComplete="current-password"
-            onChange={(e)=> setPassword_confirmation(e.target.value)}
+            onChange={(e) => setPassword_confirmation(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary"/>}
@@ -183,7 +180,7 @@ export default function SignInForm(props) {
             </Grid>
           </Grid>
           <Box mt={5}>
-            <Copyright />
+            <Copyright/>
           </Box>
         </form>
       </div>
