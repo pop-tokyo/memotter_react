@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 // @material-ui の Link と衝突するので RouterLink にしている
 import {Link as RouterLink} from 'react-router-dom';
@@ -74,7 +74,7 @@ export default function MemoList(props) {
       });
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     getMemos();
   }, []);
 
