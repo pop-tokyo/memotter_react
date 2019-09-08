@@ -31,7 +31,7 @@ class App extends Component {
     // this.addPost = this.addPost.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
 
     var token = localStorage.getItem('accessToken');
     this.setState({

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // @material-ui の Link と衝突するので RouterLink にしている
-import { Link as RouterLink } from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
