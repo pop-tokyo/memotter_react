@@ -1,4 +1,4 @@
-import React, {Component, useLayoutEffect} from 'react';
+import React, {Component} from 'react';
 
 import './App.css';
 // どこでimportしても設定が効いてしまうので、一旦ここに書いた
@@ -21,14 +21,9 @@ class App extends Component {
     super();
 
     this.state = {
-      memos: [],
-      inputValue: '',
       current_page: '',
       access_token: null
     };
-
-    this.changeInputValue = this.changeInputValue.bind(this);
-    this.addPost = this.addPost.bind(this);
   }
 
   componentDidMount() {
@@ -36,28 +31,6 @@ class App extends Component {
     this.setState({
       access_token: token
     });
-  }
-
-  changeInputValue(e) {
-    this.setState({
-      inputValue: e.target.value
-    })
-  }
-
-  addPost() {
-    axios.post('/api/v1/memos', {"memo": {"content": this.state.inputValue}})
-      .then((response) => {
-        console.log(response);
-
-        const newData = update(this.state.memos, {$unshift: [response.data]})
-        this.setState({
-          memos: newData,
-          inputValue: ''
-        })
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   render() {
@@ -72,10 +45,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/sign_up" render={() => <SignUpDisplay/>}/>
           <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
-          <Route exact path="/" render={() => <MainDisplay
-            inputValue={this.state.inputValue}
-            changeInputValue={this.changeInputValue}
-            addPost={this.addPost}/>}/>
+          <Route exact path="/" render={() => <MainDisplay/>}/>
           <Auth>
             <Route exact path="/world" render={() => <WorldDisplay/>}/>
           </Auth>
