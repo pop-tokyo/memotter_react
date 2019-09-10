@@ -1,10 +1,9 @@
 import React from 'react';
 
 // @material-ui の Link と衝突するので RouterLink にしている
-import {Link as RouterLink, Redirect} from 'react-router-dom';
+import {Link as RouterLink} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -16,14 +15,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import axios from './../axiosSetting.js';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import FolderIcon from '@material-ui/icons/Folder';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 function Copyright() {
   return (
@@ -78,7 +69,7 @@ export default function SignInForm(props) {
   const [password_confirmation, setPassword_confirmation] = React.useState('');
   const [username, setUsername] = React.useState('');
 
-  function logIn(){
+  function logIn() {
     axios
       .post('/api/v1/auth', {
         "email": email,
@@ -117,7 +108,7 @@ export default function SignInForm(props) {
             id="username"
             autoComplete="username"
             autoFocus
-            onChange={(e)=> setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -128,7 +119,7 @@ export default function SignInForm(props) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            onChange={(e)=> setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -140,7 +131,7 @@ export default function SignInForm(props) {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={(e)=> setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -152,7 +143,7 @@ export default function SignInForm(props) {
             type="password"
             id="password_confirmation"
             autoComplete="current-password"
-            onChange={(e)=> setPassword_confirmation(e.target.value)}
+            onChange={(e) => setPassword_confirmation(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary"/>}
@@ -181,7 +172,7 @@ export default function SignInForm(props) {
             </Grid>
           </Grid>
           <Box mt={5}>
-            <Copyright />
+            <Copyright/>
           </Box>
         </form>
       </div>
