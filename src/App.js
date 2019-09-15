@@ -25,6 +25,8 @@ class App extends Component {
       current_page: '',
       access_token: null
     };
+
+    this.setCurrentPage = this.setCurrentPage.bind(this);
   }
 
   componentDidMount() {
@@ -37,7 +39,7 @@ class App extends Component {
   setCurrentPage = (page) => {
     this.setState({
       current_page: page
-      })
+    })
   };
 
   render() {
@@ -49,15 +51,19 @@ class App extends Component {
           </h1>
         </header>
         <Switch>
-          <Route exact path="/sign_up" render={() => <SignUpDisplay history={history} setCurrentPage={this.setCurrentPage}/>}/>
+          <Route exact path="/sign_up"
+                 render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage}/>}/>
           <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
           <Route exact path="/" render={() => <MainDisplay/>}/>
           <Auth>
-            <Route exact path="/world" render={() => <WorldDisplay/>}/>
+            <Switch>
+              <Route exact path="/world" render={() => <WorldDisplay/>}/>
+            </Switch>
           </Auth>
         </Switch>
       </div>
-    );
+    )
+      ;
   }
 }
 

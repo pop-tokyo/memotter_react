@@ -1,6 +1,7 @@
 import React from 'react';
 
 // @material-ui の Link と衝突するので RouterLink にしている
+import { withRouter } from "react-router-dom";
 import {Link as RouterLink, Redirect} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -71,7 +72,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignInForm(props) {
+export function SignInForm(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
   const [email, setEmail] = React.useState('');
@@ -188,3 +189,5 @@ export default function SignInForm(props) {
     </Grid>
   );
 }
+
+export default withRouter(SignInForm);
