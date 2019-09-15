@@ -51,7 +51,6 @@ const useStyles = makeStyles(theme => ({
   },
   memos: {
     width: '50%',
-    margin: '0 auto',
   },
 }));
 
@@ -76,6 +75,7 @@ export default function VerticalTabs(props) {
         <Tab label="World" {...a11yProps()} />
         <Tab label="coming soon..." {...a11yProps(1)} />
       </Tabs>
+
       <TabPanel value={value} index={0} className={classes.memos}>
         <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} displayClassName=""/>
       </TabPanel>

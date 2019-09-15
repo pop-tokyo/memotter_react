@@ -26,3 +26,10 @@ body {
 .App-header a:visited {
   color: white;
 }
+
+/* @material-uiで用意されている設定を上書き */
+/* 左横のメニューバー */
+.MuiTab-root {
+  width: 350px;
+  max-width: none !important;
+}
