@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import axios from '../axiosSetting.js';
 import update from 'react-addons-update';
 
+import { makeStyles } from '@material-ui/core/styles';
+
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -16,7 +18,21 @@ import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+const useStyles = makeStyles(theme => ({
+  memoTextareaBlock: {
+    marginBottom: '30px'
+  },
+  memoTextarea: {
+    width: '100%',
+    height: '100px',
+  },
+  memoListTitle: {
+    marginBottom: '30px'
+  },
+}));
+
 export default function MemoFamily(props) {
+  const classes = useStyles();
   const [dense, setDense] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [memos, setMemos] = useState([]);
@@ -78,9 +94,9 @@ export default function MemoFamily(props) {
         (() => {
           if (props.requiredMemoInput === true) {
             return (
-              <div>
+              <div className={classes.memoTextareaBlock}>
                 {/* @see https://www.freecodecamp.org/news/how-to-get-started-with-react-hooks-controlled-forms-826c99943b92/ */}
-                <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)}/>
+                <textarea value={inputValue} placeholder='これはメモです' className={classes.memoTextarea} onChange={e => setInputValue(e.target.value)}/>
                 <button onClick={addMemo}>シェア</button>
               </div>
             )
@@ -91,7 +107,7 @@ export default function MemoFamily(props) {
       }
 
       <div className={props.displayClassName}>
-        <Typography variant="h6" className="list">
+        <Typography variant="h6" className={classes.memoListTitle}>
           最新のみんなのmemos
         </Typography>
 
