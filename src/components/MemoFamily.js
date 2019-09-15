@@ -26,6 +26,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     height: '100px',
   },
+  memoSubmit: {
+    float: 'right'
+  },
   memoListTitle: {
     marginBottom: '30px'
   },
@@ -97,7 +100,7 @@ export default function MemoFamily(props) {
               <div className={classes.memoTextareaBlock}>
                 {/* @see https://www.freecodecamp.org/news/how-to-get-started-with-react-hooks-controlled-forms-826c99943b92/ */}
                 <textarea value={inputValue} placeholder='これはメモです' className={classes.memoTextarea} onChange={e => setInputValue(e.target.value)}/>
-                <button onClick={addMemo}>シェア</button>
+                <button onClick={addMemo} className={classes.memoSubmit}>シェア</button>
               </div>
             )
           } else {
