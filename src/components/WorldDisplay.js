@@ -7,10 +7,6 @@ import Menu from "./Menu";
 
 export default function WorldDisplay(props) {
   return (
-    <Grid container component="main" className="left-container">
-      <CssBaseline/>
-
       <Menu/>
-    </Grid>
   );
 }

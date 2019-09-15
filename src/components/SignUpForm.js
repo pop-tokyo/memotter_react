@@ -1,6 +1,7 @@
 import React from 'react';
 
 // @material-ui の Link と衝突するので RouterLink にしている
+import { withRouter } from "react-router-dom";
 import {Link as RouterLink, Redirect} from 'react-router-dom';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -16,6 +17,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 import axios from './../axiosSetting.js';
+import history from '../history';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -70,7 +72,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignInForm(props) {
+export function SignInForm(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
   const [email, setEmail] = React.useState('');
@@ -78,7 +80,7 @@ export default function SignInForm(props) {
   const [password_confirmation, setPassword_confirmation] = React.useState('');
   const [username, setUsername] = React.useState('');
 
-  function logIn(){
+  function logIn() {
     axios
       .post('/api/v1/auth', {
         "email": email,
@@ -87,9 +89,9 @@ export default function SignInForm(props) {
         "username": username
       })
       .then((response) => {
-        console.log(response);
         localStorage.setItem('accessToken', response.headers["access-token"]);
-        return <Redirect to={'/sign_in'}/>
+        props.history.push('/world');
+        props.setCurrentPage('/world');
       })
       .catch((error) => {
         console.log(error)
@@ -117,7 +119,7 @@ export default function SignInForm(props) {
             id="username"
             autoComplete="username"
             autoFocus
-            onChange={(e)=> setUsername(e.target.value)}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -128,7 +130,7 @@ export default function SignInForm(props) {
             label="Email Address"
             name="email"
             autoComplete="email"
-            onChange={(e)=> setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -140,7 +142,7 @@ export default function SignInForm(props) {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={(e)=> setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -152,19 +154,18 @@ export default function SignInForm(props) {
             type="password"
             id="password_confirmation"
             autoComplete="current-password"
-            onChange={(e)=> setPassword_confirmation(e.target.value)}
+            onChange={(e) => setPassword_confirmation(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary"/>}
             label="Remember me"
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => logIn()}
+            onClick={(e) => logIn(e)}
           >
             Sign Up
           </Button>
@@ -181,10 +182,12 @@ export default function SignInForm(props) {
             </Grid>
           </Grid>
           <Box mt={5}>
-            <Copyright />
+            <Copyright/>
           </Box>
         </form>
       </div>
     </Grid>
   );
 }
+
+export default withRouter(SignInForm);

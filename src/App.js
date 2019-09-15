@@ -9,6 +9,7 @@ import update from 'react-addons-update';
 import {Redirect, Route, Switch} from 'react-router';
 // @material-ui の Link と衝突するので RouterLink にしている
 import {Link as RouterLink} from 'react-router-dom';
+import history from './history';
 
 import Auth from "./components/Auth";
 import MainDisplay from "./components/MainDisplay";
@@ -24,6 +25,8 @@ class App extends Component {
       current_page: '',
       access_token: null
     };
+
+    this.setCurrentPage = this.setCurrentPage.bind(this);
   }
 
   componentDidMount() {
@@ -33,6 +36,12 @@ class App extends Component {
     });
   }
 
+  setCurrentPage = (page) => {
+    this.setState({
+      current_page: page
+    })
+  };
+
   render() {
     return (
       <div className="App">
@@ -41,17 +50,20 @@ class App extends Component {
             <RouterLink to='/'>Memotter</RouterLink>
           </h1>
         </header>
-
         <Switch>
-          <Route exact path="/sign_up" render={() => <SignUpDisplay/>}/>
+          <Route exact path="/sign_up"
+                 render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage}/>}/>
           <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
           <Route exact path="/" render={() => <MainDisplay/>}/>
           <Auth>
-            <Route exact path="/world" render={() => <WorldDisplay/>}/>
+            <Switch>
+              <Route exact path="/world" render={() => <WorldDisplay/>}/>
+            </Switch>
           </Auth>
         </Switch>
       </div>
-    );
+    )
+      ;
   }
 }
 

@@ -1,8 +1,9 @@
 import React from "react";
-import { Redirect} from "react-router";
+import {Redirect} from "react-router";
 
 export default function Auth(props) {
+  const access_token = localStorage.getItem('accessToken');
   return (
-    props.access_token != null? props.children : <Redirect to={'/sign_in'}/>
-  )
+    access_token != null ? props.children : <Redirect to={'/sign_up'}/>
+)
 }
