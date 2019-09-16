@@ -30,9 +30,9 @@ export default function MainDisplay(props) {
         className={classes.tabs}
       >
         / selected not working
-        <Tab selected={current_page == 'world'} label="World" {...a11yProps()} />
-        <Tab selected={current_page == 'home'} label="home" {...a11yProps(1)} />
-        <Tab selected={current_page == 'profile'} label="profile" {...a11yProps(2)} />
+        <Tab selected={current_page === '/worhomeld'} label="World" {...a11yProps()} />
+        <Tab selected={current_page === '/home'} label="home" {...a11yProps(1)} />
+        <Tab selected={current_page === '/world'} label="profile" {...a11yProps(2)} />
       </Tabs>
 
       <TabPanel value={value} index={0} className={classes.memos}>
@@ -40,6 +40,9 @@ export default function MainDisplay(props) {
       </TabPanel>
       <TabPanel value={value} index={1}>
         coming soon...
+      </TabPanel>
+      <TabPanel value={value} index={2} className={classes.memos}>
+        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={false} current_page={current_page} displayClassName=""/>
       </TabPanel>
     </div>
   );

@@ -60,7 +60,15 @@ export default function MemoFamily(props) {
     } else if(props.current_page == 'home'){
 
     } else if(props.current_page == 'profile'){
-
+      axios
+        .get('/api/v1/memos')
+        .then((response) => {
+          console.log(response);
+          setMemos(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 

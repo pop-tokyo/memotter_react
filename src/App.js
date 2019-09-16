@@ -23,10 +23,12 @@ class App extends Component {
 
     this.state = {
       current_page: '',
+      username: '',
       access_token: null
     };
 
     this.setCurrentPage = this.setCurrentPage.bind(this);
+    this.setUsername = this.setUsername.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +44,12 @@ class App extends Component {
     })
   };
 
+  setUsername = (username) => {
+    this.setState({
+      username: username
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -52,13 +60,13 @@ class App extends Component {
         </header>
         <Switch>
           <Route exact path="/sign_up"
-                 render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage}/>}/>
+                 render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage} setUsername={this.setUsername}/>}/>
           <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
           <Route exact path="/" render={() => <RootDisplay/>}/>
           <Auth>
             <Switch>
-              <Route exact path="/world" render={() => <MainDisplay current_page='world'/>}/>
-              <Route exact path="/profile" render={() => <MainDisplay current_page='profile'/>}/>
+              <Route exact path={this.props.username}
+                     render={() => <MainDisplay current_page={this.props.current_page}/>}/>
             </Switch>
           </Auth>
         </Switch>
