@@ -36,7 +36,7 @@ export default function MainDisplay(props) {
       </Tabs>
 
       <TabPanel value={value} index={0} className={classes.memos}>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} displayClassName=""/>
+        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page={current_page} displayClassName=""/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         coming soon...
