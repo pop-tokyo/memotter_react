@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,12 +12,21 @@ import MemoFamily from "./MemoFamily";
 export default function MainDisplay(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const current_page = props.current_page;
+
+  useEffect(() => {
+    if (current_page === 'world') {
+      setValue(0);
+    } else if (current_page === 'home') {
+      setValue(1);
+    } else if (current_page === 'profile') {
+      setValue(2);
+    }
+  }, []);
 
   function handleChange(event, newValue) {
     setValue(newValue);
   }
-
-  const current_page = props.current_page;
 
   return (
     <div className={classes.root}>
@@ -29,10 +38,9 @@ export default function MainDisplay(props) {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        / selected not working
-        <Tab selected={current_page == 'world'} label="World" {...a11yProps()} />
-        <Tab selected={current_page == 'home'} label="home" {...a11yProps(1)} />
-        <Tab selected={current_page == 'profile'} label="profile" {...a11yProps(2)} />
+        <Tab value={0} label="World" {...a11yProps()} />
+        <Tab value={1} label="home" {...a11yProps(1)} />
+        <Tab value={2} label="profile" {...a11yProps(2)} />
       </Tabs>
 
       <TabPanel value={value} index={0} className={classes.memos}>
