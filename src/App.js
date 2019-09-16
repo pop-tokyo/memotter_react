@@ -12,10 +12,10 @@ import {Link as RouterLink} from 'react-router-dom';
 import history from './history';
 
 import Auth from "./components/Auth";
-import MainDisplay from "./components/MainDisplay";
+import RootDisplay from "./components/RootDisplay";
 import SignUpDisplay from "./components/SignUpDisplay";
 import SignInDisplay from "./components/SignInDisplay";
-import WorldDisplay from "./components/WorldDisplay";
+import MainDisplay from "./components/MainDisplay";
 
 class App extends Component {
   constructor() {
@@ -54,10 +54,11 @@ class App extends Component {
           <Route exact path="/sign_up"
                  render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage}/>}/>
           <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
-          <Route exact path="/" render={() => <MainDisplay/>}/>
+          <Route exact path="/" render={() => <RootDisplay/>}/>
           <Auth>
             <Switch>
-              <Route exact path="/world" render={() => <WorldDisplay/>}/>
+              <Route exact path="/world" render={() => <MainDisplay current_page='world'/>}/>
+              <Route exact path="/profile" render={() => <MainDisplay current_page='profile'/>}/>
             </Switch>
           </Auth>
         </Switch>
