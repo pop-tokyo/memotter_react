@@ -14,16 +14,6 @@ export default function MainDisplay(props) {
   const [value, setValue] = React.useState(0);
   const current_page = props.current_page;
 
-  useEffect(() => {
-    if (current_page === 'world') {
-      setValue(0);
-    } else if (current_page === 'home') {
-      setValue(1);
-    } else if (current_page === 'profile') {
-      setValue(2);
-    }
-  }, []);
-
   function handleChange(event, newValue) {
     setValue(newValue);
   }
@@ -37,16 +27,23 @@ export default function MainDisplay(props) {
         onChange={handleChange}
         aria-label="Vertical tabs example"
         className={classes.tabs}
+        classes={{
+          indicator: classes.indicator
+        }}
+        inkBarStyle={{background: 'blue'}}
       >
-        <Tab value={0} label="World" {...a11yProps()} />
-        <Tab value={1} label="home" {...a11yProps(1)} />
-        <Tab value={2} label="profile" {...a11yProps(2)} />
+        <Tab label="home" {...a11yProps()} />
+        <Tab label="world" {...a11yProps(1)} />
+        <Tab label="profile" {...a11yProps(2)} />
       </Tabs>
 
       <TabPanel value={value} index={0} className={classes.memos}>
         <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page={current_page} displayClassName=""/>
       </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={1} className={classes.memos}>
+        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page={current_page} displayClassName=""/>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
         coming soon...
       </TabPanel>
     </div>
@@ -93,6 +90,9 @@ const useStyles = makeStyles(theme => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+  },
+  indicator: {
+    backgroundColor: '#FFFFFF',
   },
   memos: {
     width: '50%',
