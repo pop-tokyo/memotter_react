@@ -16,6 +16,7 @@ import MainDisplay from "./components/MainDisplay";
 import SignUpDisplay from "./components/SignUpDisplay";
 import SignInDisplay from "./components/SignInDisplay";
 import WorldDisplay from "./components/WorldDisplay";
+import LogOutButton from "./components/SignOutButton";
 
 class App extends Component {
   constructor() {
@@ -30,14 +31,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    var token = localStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessToken');
     this.setState({
       access_token: token
     });
   }
 
   setCurrentPage = (page) => {
+    const token = localStorage.getItem('accessToken');
     this.setState({
+      access_token: token,
       current_page: page
     })
   };
@@ -48,12 +51,17 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">
             <RouterLink to='/'>Memotter</RouterLink>
+
+            <span className="App-header-logout">
+              {this.state.access_token ? <LogOutButton setCurrentPage={this.setCurrentPage}/> : null}
+            </span>
           </h1>
         </header>
         <Switch>
           <Route exact path="/sign_up"
                  render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage}/>}/>
-          <Route exact path="/sign_in" render={() => <SignInDisplay/>}/>
+          <Route exact path="/sign_in"
+                 render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
           <Route exact path="/" render={() => <MainDisplay/>}/>
           <Auth>
             <Switch>

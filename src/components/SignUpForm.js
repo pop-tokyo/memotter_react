@@ -80,7 +80,7 @@ export function SignInForm(props) {
   const [password_confirmation, setPassword_confirmation] = React.useState('');
   const [username, setUsername] = React.useState('');
 
-  function logIn() {
+  function signUp() {
     axios
       .post('/api/v1/auth', {
         "email": email,
@@ -165,7 +165,7 @@ export function SignInForm(props) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={(e) => logIn(e)}
+            onClick={() => signUp()}
           >
             Sign Up
           </Button>
