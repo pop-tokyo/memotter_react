@@ -72,7 +72,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export function SignInForm(props) {
+export function SignUpForm(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
   const [email, setEmail] = React.useState('');
@@ -190,4 +190,4 @@ export function SignInForm(props) {
   );
 }
 
-export default withRouter(SignInForm);
+export default withRouter(SignUpForm);
