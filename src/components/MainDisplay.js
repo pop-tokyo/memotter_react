@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import MemoFamily from "./MemoFamily";
+import Profile from "./Profile";
 
 export default function MainDisplay(props) {
   const classes = useStyles();
@@ -30,19 +31,19 @@ export default function MainDisplay(props) {
         className={classes.tabs}
       >
         / selected not working
-        <Tab selected={current_page === '/worhomeld'} label="World" {...a11yProps()} />
+        <Tab selected={current_page === '/world'} label="World" {...a11yProps()} />
         <Tab selected={current_page === '/home'} label="home" {...a11yProps(1)} />
-        <Tab selected={current_page === '/world'} label="profile" {...a11yProps(2)} />
+        <Tab selected={current_page === '/profile'} label="profile" {...a11yProps(2)} />
       </Tabs>
 
       <TabPanel value={value} index={0} className={classes.memos}>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page={current_page} displayClassName=""/>
+        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
       </TabPanel>
       <TabPanel value={value} index={1}>
         coming soon...
       </TabPanel>
       <TabPanel value={value} index={2} className={classes.memos}>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={false} current_page={current_page} displayClassName=""/>
+        <Profile gridXs={12} gridMd={12} requiredMemoInput={false} username={props.username} displayClassName=""/>
       </TabPanel>
     </div>
   );

@@ -66,7 +66,7 @@ class App extends Component {
           <Auth>
             <Switch>
               <Route exact path={this.props.username}
-                     render={() => <MainDisplay current_page={this.props.current_page}/>}/>
+                     render={() => <MainDisplay current_page={this.props.current_page} username={this.props.username}/>}/>
             </Switch>
           </Auth>
         </Switch>
