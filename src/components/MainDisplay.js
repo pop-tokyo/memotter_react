@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,12 +13,9 @@ import Profile from "./Profile";
 export default function MainDisplay(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
   function handleChange(event, newValue) {
     setValue(newValue);
   }
-
-  const current_page = props.current_page;
 
   return (
     <div className={classes.root}>
@@ -29,18 +26,21 @@ export default function MainDisplay(props) {
         onChange={handleChange}
         aria-label="Vertical tabs example"
         className={classes.tabs}
+        classes={{
+          indicator: classes.indicator
+        }}
+        inkBarStyle={{background: 'blue'}}
       >
-        / selected not working
-        <Tab selected={current_page === '/world'} label="World" {...a11yProps()} />
-        <Tab selected={current_page === '/home'} label="home" {...a11yProps(1)} />
-        <Tab selected={current_page === '/profile'} label="profile" {...a11yProps(2)} />
+        <Tab label="home" {...a11yProps()} />
+        <Tab label="world" {...a11yProps(1)} />
+        <Tab label="profile" {...a11yProps(2)} />
       </Tabs>
 
-      <TabPanel value={value} index={0} className={classes.memos}>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      <TabPanel value={value} index={0}>
         coming soon...
+      </TabPanel>
+      <TabPanel value={value} index={1} className={classes.memos}>
+        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
       </TabPanel>
       <TabPanel value={value} index={2} className={classes.memos}>
         <Profile gridXs={12} gridMd={12} requiredMemoInput={false} username={props.username} displayClassName=""/>
@@ -89,6 +89,9 @@ const useStyles = makeStyles(theme => ({
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+  },
+  indicator: {
+    backgroundColor: '#FFFFFF',
   },
   memos: {
     width: '50%',
