@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+// TODO use MemoList
 export default function MemoFamily(props) {
   const classes = useStyles();
   const [dense, setDense] = useState(false);
@@ -45,6 +46,7 @@ export default function MemoFamily(props) {
   }, []);
 
   const getMemos = () => {
+    if (props.current_page == 'world'){
     axios
       .get('/api/v1/memos')
       .then((response) => {
@@ -54,6 +56,12 @@ export default function MemoFamily(props) {
       .catch((error) => {
         console.log(error);
       });
+
+    } else if(props.current_page == 'home'){
+
+    } else if(props.current_page == 'profile'){
+
+    }
   };
 
   const addMemo = () => {
