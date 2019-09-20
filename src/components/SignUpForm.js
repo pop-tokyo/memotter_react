@@ -90,7 +90,8 @@ export function SignInForm(props) {
       })
       .then((response) => {
         localStorage.setItem('accessToken', response.headers["access-token"]);
-        props.history.push('/world');
+        props.history.push(username);
+        props.setUsername(username);
         props.setCurrentPage('/world');
       })
       .catch((error) => {

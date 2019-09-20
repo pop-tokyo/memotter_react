@@ -8,12 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import MemoFamily from "./MemoFamily";
+import Profile from "./Profile";
 
 export default function MainDisplay(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const current_page = props.current_page;
-
   function handleChange(event, newValue) {
     setValue(newValue);
   }
@@ -37,14 +36,14 @@ export default function MainDisplay(props) {
         <Tab label="profile" {...a11yProps(2)} />
       </Tabs>
 
-      <TabPanel value={value} index={0} className={classes.memos}>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page={current_page} displayClassName=""/>
+      <TabPanel value={value} index={0}>
+        coming soon...
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.memos}>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page={current_page} displayClassName=""/>
+        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
       </TabPanel>
-      <TabPanel value={value} index={2}>
-        coming soon...
+      <TabPanel value={value} index={2} className={classes.memos}>
+        <Profile gridXs={12} gridMd={12} requiredMemoInput={false} username={props.username} displayClassName=""/>
       </TabPanel>
     </div>
   );
