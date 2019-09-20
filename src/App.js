@@ -58,15 +58,13 @@ class App extends Component {
           </h1>
         </header>
         <Switch>
-          <Route exact path="/sign_up"
-                 render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage}/>}/>
-          <Route exact path="/sign_in"
-                 render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
-          <Route exact path="/" render={() => <MainDisplay/>}/>
           <Auth>
-            <Switch>
-              <Route exact path="/world" render={() => <WorldDisplay/>}/>
-            </Switch>
+            <Route exact path="/sign_up"
+                   render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage}/>}/>
+            <Route exact path="/sign_in"
+                   render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
+            <Route exact path="/" render={() => <MainDisplay/>}/>
+            <Route exact path="/world" render={() => <WorldDisplay/>}/>
           </Auth>
         </Switch>
       </div>
