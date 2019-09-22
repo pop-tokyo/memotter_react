@@ -73,8 +73,11 @@ class App extends Component {
             <Route exact path="/sign_in"
                    render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
             <Route exact path="/" render={() => <RootDisplay/>}/>
-            <Route exact path={this.props.username}
+            <Route exact path="/world"
                    render={() => <MainDisplay current_page={this.props.current_page} username={this.props.username}/>}/>
+            <Route exact path="/home"
+                   render={() => <MainDisplay current_page={this.props.current_page} username={this.props.username}/>}/>
+            <Route eaxt path="/users/:username" render={() => <MainDisplay current_page={this.props.current_page} username={this.props.username}/>}/>
           </Auth>
         </Switch>
       </div>
