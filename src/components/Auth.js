@@ -3,7 +3,14 @@ import {Redirect} from "react-router";
 
 export default function Auth(props) {
   const access_token = localStorage.getItem('accessToken');
-  return (
-    access_token != null ? props.children : <Redirect to={'/sign_up'}/>
-)
+  const current_path = props.location.pathname;
+  return(
+    (() => {
+      if (access_token != null) {
+        return (current_path == '/world' ? props.children : <Redirect to={'/world'}/>);
+      } else {
+        return (current_path == '/world' ? <Redirect to={'/sign_up'}/> : props.children)
+      }
+    })()
+  )
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { withRouter } from "react-router-dom";
+
 // @material-ui の Link と衝突するので RouterLink にしている
 import {Link as RouterLink} from 'react-router-dom';
 
@@ -16,6 +18,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
+
+import axios from './../axiosSetting.js';
+import history from '../history';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -71,9 +76,27 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignInForm(props) {
+function SignInForm(props) {
   const classes = useStyles();
   const [dense, setDense] = React.useState(false);
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+
+  function signIn() {
+    axios
+      .post('/api/v1/auth/sign_in', {
+        "email": email,
+        "password": password
+      })
+      .then((response) => {
+        localStorage.setItem('accessToken', response.headers["access-token"]);
+        props.history.push('/world');
+        props.setCurrentPage('/world');
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
 
   return (
     <Grid item xs={props.gridXs} md={props.gridMd} component={Paper} elevation={6} square>
@@ -95,6 +118,7 @@ export default function SignInForm(props) {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(e) => setEmail(e.target.value)}
           />
           <TextField
             variant="outlined"
@@ -106,17 +130,18 @@ export default function SignInForm(props) {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e) => setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary"/>}
             label="Remember me"
           />
           <Button
-            type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={() => signIn()}
           >
             Sign In
           </Button>
@@ -140,3 +165,5 @@ export default function SignInForm(props) {
     </Grid>
   );
 }
+
+export default withRouter(SignInForm);

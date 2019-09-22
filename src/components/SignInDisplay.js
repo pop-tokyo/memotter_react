@@ -35,7 +35,7 @@ export default function SignInDisplay(props) {
       <CssBaseline/>
 
       <MemoFamily gridXs={6} gridMd={6} requiredMemoInput={false} displayClassName=""/>
-      <SignInForm gridXs={6} gridMd={6}/>
+      <SignInForm setCurrentPage={props.setCurrentPage} gridXs={6} gridMd={6}/>
     </Grid>
   );
 }

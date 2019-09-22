@@ -27,6 +27,10 @@ body {
   color: white;
 }
 
+.App-header-logout {
+  float: right;
+}
+
 /* @material-uiで用意されている設定を上書き */
 /* 左横のメニューバー */
 .MuiTab-root {
