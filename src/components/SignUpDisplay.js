@@ -36,7 +36,7 @@ export default function SignUpDisplay(props) {
       <CssBaseline/>
 
       <MemoFamily gridXs={6} gridMd={6} requiredMemoInput={false} displayClassName=""/>
-      <SignUpForm setCurrentPage={props.setCurrentPage} gridXs={6} gridMd={6}/>
+      <SignUpForm setCurrentPage={props.setCurrentPage} setUsername={props.setUsername} gridXs={6} gridMd={6}/>
     </Grid>
   );
 };

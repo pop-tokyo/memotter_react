@@ -12,10 +12,11 @@ import {Link as RouterLink} from 'react-router-dom';
 import history from './history';
 
 import Auth from "./components/Auth";
-import MainDisplay from "./components/MainDisplay";
+import RootDisplay from "./components/RootDisplay";
 import SignUpDisplay from "./components/SignUpDisplay";
 import SignInDisplay from "./components/SignInDisplay";
-import WorldDisplay from "./components/WorldDisplay";
+import MainDisplay from "./components/MainDisplay";
+// import WorldDisplay from "./components/WorldDisplay";
 import LogOutButton from "./components/SignOutButton";
 
 class App extends Component {
@@ -24,10 +25,12 @@ class App extends Component {
 
     this.state = {
       current_page: '',
+      username: '',
       access_token: null
     };
 
     this.setCurrentPage = this.setCurrentPage.bind(this);
+    this.setUsername = this.setUsername.bind(this);
   }
 
   componentDidMount() {
@@ -45,6 +48,12 @@ class App extends Component {
     })
   };
 
+  setUsername = (username) => {
+    this.setState({
+      username: username
+    });
+  };
+
   render() {
     return (
       <div className="App">
@@ -60,11 +69,12 @@ class App extends Component {
         <Switch>
           <Auth>
             <Route exact path="/sign_up"
-                   render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage}/>}/>
+                   render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage} setUsername={this.setUsername}/>}/>
             <Route exact path="/sign_in"
                    render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
-            <Route exact path="/" render={() => <MainDisplay/>}/>
-            <Route exact path="/world" render={() => <WorldDisplay/>}/>
+            <Route exact path="/" render={() => <RootDisplay/>}/>
+            <Route exact path={this.props.username}
+                   render={() => <MainDisplay current_page={this.props.current_page} username={this.props.username}/>}/>
           </Auth>
         </Switch>
       </div>

@@ -37,3 +37,7 @@ body {
   width: 350px;
   max-width: none !important;
 }
+
+.MuiTab-textColorInherit.Mui-selected {
+  opacity: 0.7 !important;
+}
