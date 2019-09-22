@@ -7,9 +7,9 @@ export default function Auth(props) {
   return(
     (() => {
       if (access_token != null) {
-        return (current_path == '/world' ? props.children : <Redirect to={'/world'}/>);
+        return ((current_path == '/sign_in' || current_path == '/sign_up') ? <Redirect to={'/world'}/> : props.children);
       } else {
-        return (current_path == '/world' ? <Redirect to={'/sign_up'}/> : props.children)
+        return ((current_path == '/sign_in' || current_path == '/sign_up') ? props.children : <Redirect to={'/sign_up'}/>);
       }
     })()
   )
