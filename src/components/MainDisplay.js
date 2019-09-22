@@ -40,7 +40,7 @@ export default function MainDisplay(props) {
         coming soon...
       </TabPanel>
       <TabPanel value={value} index={1} className={classes.memos}>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
+        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} username={props.username} current_page='/world' displayClassName=""/>
       </TabPanel>
       <TabPanel value={value} index={2} className={classes.memos}>
         <Profile gridXs={12} gridMd={12} requiredMemoInput={false} username={props.username} displayClassName=""/>

@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
-
+import React, {useState, useEffect} from 'react';
+import {withRouter} from "react-router-dom";
 import axios from '../axiosSetting.js';
 import update from 'react-addons-update';
-
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
@@ -35,7 +34,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 // TODO use MemoList
-export default function MemoFamily(props) {
+export function MemoFamily(props) {
   const classes = useStyles();
   const [dense, setDense] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -46,27 +45,27 @@ export default function MemoFamily(props) {
   }, []);
 
   const getMemos = () => {
-    if (props.current_page === '/world'){
-    axios
-      .get('/api/v1/memos')
-      .then((response) => {
-        console.log(response);
-        setMemos(response.data)
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (props.current_page === '/world') {
+      axios
+        .get('/api/v1/memos')
+        .then((response) => {
+          console.log(response);
+          setMemos(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-    } else if(props.current_page === '/home'){
+    } else if (props.current_page === '/home') {
 
     }
   };
 
   const addMemo = () => {
-    axios.post('/api/v1/memos', { "memo": { "content": inputValue } })
+    axios.post('/api/v1/memos', {"memo": {"content": inputValue}})
       .then((response) => {
         console.log(response);
-        const newData = update(memos, { $unshift: [response.data] });
+        const newData = update(memos, {$unshift: [response.data]});
         setMemos(newData);
         setInputValue('');
       })
@@ -75,11 +74,15 @@ export default function MemoFamily(props) {
       });
   };
 
+  const jumpToProfile = (username) => {
+    props.history.push(username);
+  };
+
   const list = memos.map((memo, index) => {
     return (
       <ListItem key={index}>
         <ListItemAvatar>
-          <Avatar>
+          <Avatar onClick={()=> jumpToProfile(memo.username)}>
             <FolderIcon/>
           </Avatar>
         </ListItemAvatar>
@@ -105,7 +108,8 @@ export default function MemoFamily(props) {
             return (
               <div className={classes.memoTextareaBlock}>
                 {/* @see https://www.freecodecamp.org/news/how-to-get-started-with-react-hooks-controlled-forms-826c99943b92/ */}
-                <textarea value={inputValue} placeholder='これはメモです' className={classes.memoTextarea} onChange={e => setInputValue(e.target.value)}/>
+                <textarea value={inputValue} placeholder='これはメモです' className={classes.memoTextarea}
+                          onChange={e => setInputValue(e.target.value)}/>
                 <button onClick={addMemo} className={classes.memoSubmit}>シェア</button>
               </div>
             )
@@ -127,3 +131,5 @@ export default function MemoFamily(props) {
     </Grid>
   );
 }
+
+export default withRouter(MemoFamily);
