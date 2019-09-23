@@ -2,15 +2,14 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
 import MemoFamily from "./MemoFamily";
 import Profile from "./Profile";
+import MenuBar from "./MenuBar";
 
-export default function MainDisplay(props) {
+export default function ProfileDisplay(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   function handleChange(event, newValue) {
@@ -19,36 +18,11 @@ export default function MainDisplay(props) {
 
   return (
     <div className={classes.root}>
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        className={classes.tabs}
-        classes={{
-          indicator: classes.indicator
-        }}
-        inkBarStyle={{background: 'blue'}}
-      >
-        <Tab label="home" {...a11yProps()} />
-        <Tab label="world" {...a11yProps(1)} />
-        <Tab label="profile" {...a11yProps(2)} />
-      </Tabs>
-
-      <TabPanel value={value} index={0}>
-        coming soon...
-      </TabPanel>
-      <TabPanel value={value} index={1} className={classes.memos}>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
-      </TabPanel>
-      <TabPanel value={value} index={2} className={classes.memos}>
-        <Profile gridXs={12} gridMd={12} requiredMemoInput={false} username={props.username} displayClassName=""/>
-      </TabPanel>
+      <MenuBar username={props.match.params.username}/>
+      <Profile/>
     </div>
   );
 }
-
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
