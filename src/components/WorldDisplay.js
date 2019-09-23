@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 import MemoFamily from "./MemoFamily";
 import Profile from "./Profile";
 
-export default function MainDisplay(props) {
+export default function WorldDisplay(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   function handleChange(event, newValue) {

@@ -4,19 +4,16 @@ import './App.css';
 // どこでimportしても設定が効いてしまうので、一旦ここに書いた
 import './MainDisplay.css';
 
-import axios from './axiosSetting.js';
-import update from 'react-addons-update';
 import {Redirect, Route, Switch} from 'react-router';
 // @material-ui の Link と衝突するので RouterLink にしている
 import {Link as RouterLink} from 'react-router-dom';
-import history from './history';
 
 import Auth from "./components/Auth";
 import RootDisplay from "./components/RootDisplay";
 import SignUpDisplay from "./components/SignUpDisplay";
 import SignInDisplay from "./components/SignInDisplay";
-import MainDisplay from "./components/MainDisplay";
-// import WorldDisplay from "./components/WorldDisplay";
+import WorldDisplay from "./components/WorldDisplay";
+import ProfileDisplay from "./components/ProfileDisplay";
 import LogOutButton from "./components/SignOutButton";
 
 class App extends Component {
@@ -74,10 +71,11 @@ class App extends Component {
                    render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
             <Route exact path="/" render={() => <RootDisplay/>}/>
             <Route exact path="/world"
-                   render={() => <MainDisplay current_page={this.props.current_page} username={this.props.username}/>}/>
+                   render={() => <WorldDisplay current_page={this.state.current_page} username={this.state.username}/>}/>
             <Route exact path="/home"
-                   render={() => <MainDisplay current_page={this.props.current_page} username={this.props.username}/>}/>
-            <Route eaxt path="/users/:username" render={() => <MainDisplay current_page={this.props.current_page} username={this.props.username}/>}/>
+                   render={() => <WorldDisplay current_page={this.state.current_page} username={this.state.username}/>}/>
+            <Route eaxt path="/users/:username" render={props => <ProfileDisplay match={props.match}
+                                                                              current_page={this.state.current_page}/>}/>
           </Auth>
         </Switch>
       </div>
