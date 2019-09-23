@@ -13,12 +13,10 @@ import Typography from '@material-ui/core/Typography';
 // TODO: 使えない
 // import HUE from '@material-ui/core/colors/HUE';
 
+import cat1 from '../images/cat1.jpg'
+import cat2 from '../images/cat2.jpg'
+
 const useStyles = makeStyles({
-  orangeAvatar: {
-    margin: 10,
-    color: '#fff',
-    backgroundColor: deepOrange[500],
-  },
   card: {
     maxWidth: 1000,
   },
@@ -26,13 +24,23 @@ const useStyles = makeStyles({
     height: 140,
   },
   profileIcon: {
+    width: 70,
+    height: 70,
+    borderRadius: '50%',
   },
   followButton:{
   }
 });
 
-export default function ProfileCard() {
+export default function ProfileCard(props) {
   const classes = useStyles();
+  let iconImage;
+
+  if ((props.profile.id % 2) !== 0) {
+    iconImage = cat1;
+  } else {
+    iconImage = cat2;
+  }
 
   return (
     <Card className={classes.card}>
@@ -43,9 +51,8 @@ export default function ProfileCard() {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Grid container justify="center" alignItems="center" className={classes.profileIcon}>
-            {/*TODO アイコン画像埋める*/}
-            <Avatar className={classes.orangeAvatar}>N</Avatar>
+          <Grid container justify="center" alignItems="center">
+            <img src={iconImage} alt="icon" className={classes.profileIcon}/>
             <Typography gutterBottom variant="h5" component="h2">
               Sayatam
             </Typography>
