@@ -13,12 +13,9 @@ import Typography from '@material-ui/core/Typography';
 // TODO: 使えない
 // import HUE from '@material-ui/core/colors/HUE';
 
+import cat1 from '../images/cat1.jpg'
+
 const useStyles = makeStyles({
-  orangeAvatar: {
-    margin: 10,
-    color: '#fff',
-    backgroundColor: deepOrange[500],
-  },
   card: {
     maxWidth: 1000,
   },
@@ -26,6 +23,8 @@ const useStyles = makeStyles({
     height: 140,
   },
   profileIcon: {
+    width: 100,
+    borderRadius: '50%',
   },
   followButton:{
   }
@@ -43,9 +42,8 @@ export default function ProfileCard() {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Grid container justify="center" alignItems="center" className={classes.profileIcon}>
-            {/*TODO アイコン画像埋める*/}
-            <Avatar className={classes.orangeAvatar}>N</Avatar>
+          <Grid container justify="center" alignItems="center">
+            <img src={cat1} alt="cat1" className={classes.profileIcon}/>
             <Typography gutterBottom variant="h5" component="h2">
               Sayatam
             </Typography>
