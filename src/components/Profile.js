@@ -125,7 +125,8 @@ export default function Profile(props) {
       }
 
       <div className={props.displayClassName}>
-        <ProfileCard/>
+        {/* 一旦、profileをそのまま渡す */}
+        <ProfileCard profile={profile}/>
         <List dense={dense}>
           {list}
         </List>

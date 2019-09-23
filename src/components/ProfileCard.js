@@ -14,6 +14,7 @@ import Typography from '@material-ui/core/Typography';
 // import HUE from '@material-ui/core/colors/HUE';
 
 import cat1 from '../images/cat1.jpg'
+import cat2 from '../images/cat2.jpg'
 
 const useStyles = makeStyles({
   card: {
@@ -30,8 +31,15 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ProfileCard() {
+export default function ProfileCard(props) {
   const classes = useStyles();
+  let iconImage;
+
+  if ((props.profile.id % 2) !== 0) {
+    iconImage = cat1;
+  } else {
+    iconImage = cat2;
+  }
 
   return (
     <Card className={classes.card}>
@@ -43,7 +51,7 @@ export default function ProfileCard() {
         />
         <CardContent>
           <Grid container justify="center" alignItems="center">
-            <img src={cat1} alt="cat1" className={classes.profileIcon}/>
+            <img src={iconImage} alt="icon" className={classes.profileIcon}/>
             <Typography gutterBottom variant="h5" component="h2">
               Sayatam
             </Typography>
