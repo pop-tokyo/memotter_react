@@ -17,6 +17,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+import ProfileCard from "./ProfileCard";
 
 const useStyles = makeStyles(theme => ({
   memoTextareaBlock: {
@@ -124,10 +125,7 @@ export default function Profile(props) {
       }
 
       <div className={props.displayClassName}>
-        <Typography variant="h6" className={classes.memoListTitle}>
-          この人のmemo
-        </Typography>
-
+        <ProfileCard/>
         <List dense={dense}>
           {list}
         </List>
