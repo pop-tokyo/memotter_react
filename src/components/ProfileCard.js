@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ProfileCard(props) {
+export default function ProfileCard() {
   const classes = useStyles();
 
   return (

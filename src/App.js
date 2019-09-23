@@ -23,7 +23,6 @@ class App extends Component {
 
     this.state = {
       current_page: '',
-      userId: '',
       username: '',
       access_token: null
     };
@@ -47,10 +46,9 @@ class App extends Component {
     })
   };
 
-  setUsername = (responseData) => {
+  setUsername = (username) => {
     this.setState({
-      userId: responseData.id,
-      username: responseData.username,
+      username: username
     });
   };
 
@@ -77,7 +75,7 @@ class App extends Component {
                    render={props => <WorldDisplay match={props.match}/>}/>
             <Route exact path="/home"
                    render={props => <HomeDisplay match={props.match}/>}/>
-            <Route eaxt path="/users/:username" render={props => <ProfileDisplay match={props.match} userId={this.state.userId} />}/>
+            <Route eaxt path="/users/:username" render={props => <ProfileDisplay match={props.match}/>}/>
           </Auth>
         </Switch>
       </div>

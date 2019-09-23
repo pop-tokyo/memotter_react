@@ -90,7 +90,7 @@ export function SignUpForm(props) {
       .then((response) => {
         localStorage.setItem('accessToken', response.headers["access-token"]);
         props.history.push(username);
-        props.setUsername(response.data.data);
+        props.setUsername(username);
         props.setCurrentPage('/world');
       })
       .catch((error) => {
