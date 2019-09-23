@@ -24,7 +24,8 @@ const useStyles = makeStyles({
     height: 140,
   },
   profileIcon: {
-    width: 100,
+    width: 70,
+    height: 70,
     borderRadius: '50%',
   },
   followButton:{
