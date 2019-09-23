@@ -125,7 +125,7 @@ export default function Profile(props) {
       }
 
       <div className={props.displayClassName}>
-        <ProfileCard/>
+        <ProfileCard userId={props.userId}/>
         <List dense={dense}>
           {list}
         </List>

@@ -16,10 +16,13 @@ export default function ProfileDisplay(props) {
     setValue(newValue);
   }
 
+  // TODO ここにprops.userIdが渡ってこない...
+  console.log(props.userId)
+
   return (
     <div className={classes.root}>
       <MenuBar username={props.match.params.username}/>
-      <Profile/>
+      <Profile userId={props.userId}/>
     </div>
   );
 }
