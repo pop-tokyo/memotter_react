@@ -14,6 +14,7 @@ import SignUpDisplay from "./components/SignUpDisplay";
 import SignInDisplay from "./components/SignInDisplay";
 import WorldDisplay from "./components/WorldDisplay";
 import ProfileDisplay from "./components/ProfileDisplay";
+import HomeDisplay from "./components/HomeDisplay";
 import LogOutButton from "./components/SignOutButton";
 
 class App extends Component {
@@ -71,11 +72,10 @@ class App extends Component {
                    render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
             <Route exact path="/" render={() => <RootDisplay/>}/>
             <Route exact path="/world"
-                   render={() => <WorldDisplay current_page={this.state.current_page} username={this.state.username}/>}/>
+                   render={props => <WorldDisplay match={props.match}/>}/>
             <Route exact path="/home"
-                   render={() => <WorldDisplay current_page={this.state.current_page} username={this.state.username}/>}/>
-            <Route eaxt path="/users/:username" render={props => <ProfileDisplay match={props.match}
-                                                                              current_page={this.state.current_page}/>}/>
+                   render={props => <HomeDisplay match={props.match}/>}/>
+            <Route eaxt path="/users/:username" render={props => <ProfileDisplay match={props.match}/>}/>
           </Auth>
         </Switch>
       </div>

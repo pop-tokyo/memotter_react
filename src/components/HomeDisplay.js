@@ -4,13 +4,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import MemoFamily from "./MemoFamily";
 import MenuBar from "./MenuBar";
 
-export default function WorldDisplay(props) {
+export default function HomeDisplay(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   return (
     <div className={classes.root}>
       <MenuBar username={props.match.params.username}/>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
+      <p>coming soon...</p>
     </div>
   );
 }
