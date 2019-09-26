@@ -55,17 +55,16 @@ export function MemoFamily(props) {
         .catch((error) => {
           console.log(error);
         });
-
     } else if (props.current_page === '/home') {
 
     }
   };
 
   const addMemo = () => {
-    axios.post('/api/v1/memos', {"memo": {"content": inputValue}})
+    axios.post('/api/v1/memos', { "memo": { "content": inputValue } })
       .then((response) => {
         console.log(response);
-        const newData = update(memos, {$unshift: [response.data]});
+        const newData = update(memos, { $unshift: [response.data] });
         setMemos(newData);
         setInputValue('');
       })
@@ -82,7 +81,7 @@ export function MemoFamily(props) {
     return (
       <ListItem key={index}>
         <ListItemAvatar>
-          <Avatar onClick={()=> jumpToProfile(memo.username)}>
+          <Avatar onClick={() => jumpToProfile(memo.username)}>
             <FolderIcon/>
           </Avatar>
         </ListItemAvatar>

@@ -1,8 +1,12 @@
 import React from 'react';
 
+import axios from './../axiosSetting.js';
+import history from '../history';
+
 // @material-ui の Link と衝突するので RouterLink にしている
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {Link as RouterLink, Redirect} from 'react-router-dom';
+
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,16 +20,6 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
-import axios from './../axiosSetting.js';
-import history from '../history';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import IconButton from '@material-ui/core/IconButton';
-import FolderIcon from '@material-ui/icons/Folder';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 function Copyright() {
   return (
@@ -88,6 +82,7 @@ export function SignUpForm(props) {
         "username": username
       })
       .then((response) => {
+        console.log(response)
         localStorage.setItem('accessToken', response.headers["access-token"]);
         props.history.push(username);
         props.setUsername(username);

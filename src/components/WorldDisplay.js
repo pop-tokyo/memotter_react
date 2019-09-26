@@ -1,19 +1,9 @@
 import React, {useEffect} from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
+
 import MemoFamily from "./MemoFamily";
 import MenuBar from "./MenuBar";
-
-export default function WorldDisplay(props) {
-  const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  return (
-    <div className={classes.root}>
-      <MenuBar username={props.match.params.username}/>
-        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
-    </div>
-  );
-}
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,3 +22,15 @@ const useStyles = makeStyles(theme => ({
     width: '50%',
   },
 }));
+
+export default function WorldDisplay(props) {
+  const classes = useStyles();
+  const [value, setValue] = React.useState(0);
+
+  return (
+    <div className={classes.root}>
+      <MenuBar username={props.match.params.username}/>
+        <MemoFamily gridXs={12} gridMd={12} requiredMemoInput={true} current_page='/world' displayClassName=""/>
+    </div>
+  );
+}

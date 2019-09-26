@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-
-import { withRouter } from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import history from '../history';
 
 function SignOutButton(props) {
@@ -8,7 +7,7 @@ function SignOutButton(props) {
     localStorage.removeItem('accessToken');
     props.history.push('/sign_in');
     props.setCurrentPage('/sign_in');
-  }
+  };
 
   return (
     <button onClick={signOut}>
