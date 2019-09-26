@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-
 import axios from '../axiosSetting.js';
 import update from 'react-addons-update';
 
@@ -7,7 +6,6 @@ import {makeStyles} from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -17,6 +15,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import FolderIcon from '@material-ui/icons/Folder';
 import DeleteIcon from '@material-ui/icons/Delete';
+
 import ProfileCard from "./ProfileCard";
 
 const useStyles = makeStyles(theme => ({
@@ -71,10 +70,10 @@ export default function Profile(props) {
   };
 
   const addMemo = () => {
-    axios.post('/api/v1/memos', {"memo": {"content": inputValue}})
+    axios.post('/api/v1/memos', { "memo": { "content": inputValue } })
       .then((response) => {
         console.log(response);
-        const newData = update(memos, {$unshift: [response.data]});
+        const newData = update(memos, { $unshift: [response.data] });
         setMemos(newData);
         setInputValue('');
       })

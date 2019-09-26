@@ -1,9 +1,4 @@
 import React, {Component} from 'react';
-
-import './App.css';
-// どこでimportしても設定が効いてしまうので、一旦ここに書いた
-import './MainDisplay.css';
-
 import {Redirect, Route, Switch} from 'react-router';
 // @material-ui の Link と衝突するので RouterLink にしている
 import {Link as RouterLink} from 'react-router-dom';
@@ -16,6 +11,10 @@ import WorldDisplay from "./components/WorldDisplay";
 import ProfileDisplay from "./components/ProfileDisplay";
 import HomeDisplay from "./components/HomeDisplay";
 import LogOutButton from "./components/SignOutButton";
+
+import './App.css';
+// どこでimportしても設定が効いてしまうので、一旦ここに書いた
+import './MainDisplay.css';
 
 class App extends Component {
   constructor() {
@@ -70,12 +69,14 @@ class App extends Component {
                    render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage} setUsername={this.setUsername}/>}/>
             <Route exact path="/sign_in"
                    render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
-            <Route exact path="/" render={() => <RootDisplay/>}/>
+            <Route exact path="/"
+                   render={() => <RootDisplay/>}/>
             <Route exact path="/world"
                    render={props => <WorldDisplay match={props.match}/>}/>
             <Route exact path="/home"
                    render={props => <HomeDisplay match={props.match}/>}/>
-            <Route eaxt path="/users/:username" render={props => <ProfileDisplay match={props.match}/>}/>
+            <Route eaxt path="/users/:username"
+                   render={props => <ProfileDisplay match={props.match}/>}/>
           </Auth>
         </Switch>
       </div>
