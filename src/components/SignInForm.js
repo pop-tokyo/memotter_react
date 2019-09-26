@@ -80,8 +80,10 @@ function SignInForm(props) {
         "password": password
       })
       .then((response) => {
+        console.log(response)
         localStorage.setItem('accessToken', response.headers["access-token"]);
         props.history.push('/world');
+        props.setUsername(response.data.data.username);
         props.setCurrentPage('/world');
       })
       .catch((error) => {

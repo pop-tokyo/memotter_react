@@ -68,7 +68,7 @@ class App extends Component {
             <Route exact path="/sign_up"
                    render={() => <SignUpDisplay setCurrentPage={this.setCurrentPage} setUsername={this.setUsername}/>}/>
             <Route exact path="/sign_in"
-                   render={() => <SignInDisplay setCurrentPage={this.setCurrentPage}/>}/>
+                   render={() => <SignInDisplay setCurrentPage={this.setCurrentPage} setUsername={this.setUsername}/>}/>
             <Route exact path="/"
                    render={() => <RootDisplay/>}/>
             <Route exact path="/world"
